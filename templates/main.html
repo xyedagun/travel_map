@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/static/mapstyles.js"></script>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+
+{% for place in api_result %}
+<!-- <div id="top-padding"></div> -->
+<div id ="list_container">
+	{% if place['name'] %}
+	<h4>{{place['name']}}</h4>
+	{% endif %}
+	<p><b>{{ place.get('display_phone') }}</b></p>
+	{% if place.get('image_url') %}
+	<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
+	{% else %}
+	<div class="image-container"><img src="static/img/placeholder.png" alt="image placeholder" style="width:100px;height:100px;"></div>
+	{% endif %}
+	<a href="{{ place.get('url')}}" > Click to view on Yelp</a>
+	<br><br>
+	<p>{{ place.get('snippet_text') }}</p><br><br>
+	{% if place['location']['address'] %}
+	<p>{{ place['location']['address'][0] }}</p><br>
+	{% endif %}
+	<p>{{ place['location']['city'] }}</p>
+</div>
+
+{% endfor %}
+
+
+    <div id="map-template"></div>
+{% endblock %}

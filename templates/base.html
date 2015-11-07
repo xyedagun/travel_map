@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="/static/maps.css" rel="stylesheet">
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+    
+
+<div id="search-nav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <center>
+                <form action="/process-search-form" class="navbar-form navbar-right" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="query" id="search" placeholder="Looking for?">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="location" id="search" placeholder="Type city name">
+                    </div>
+                    <button id ="submit-button" type="submit" value="search"class="btn btn-default">Search</button>
+                   <button id ="signin-button" type="submit" value="Signin"class="btn btn-default">Sign In</button>
+                </form>
+            </div>
+        </center>
+    </div>
+</div>
+
+
+  {% block head %}
+
+      <!-- put extra CSS/JS here -->
+  {% endblock %}
+
+</head>
+<body>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>
