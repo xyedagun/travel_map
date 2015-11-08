@@ -167,7 +167,27 @@ h4 {
 
 
 /*--------------------------------*/
-/*Maps*/
+/*Modal*/
 /*--------------------------------*/
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
 
-
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+.form-group p{
+    color: black;
+    font-size: 1em;
+}
+.modal-title {
+    font-size: 2em;
+}
+.form-group label{
+    color: black;
+}
+.form-group 

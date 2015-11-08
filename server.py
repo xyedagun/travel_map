@@ -22,7 +22,7 @@ def index():
     """Show homepage."""
 
 
-    return render_template("home.html")
+    return render_template("base.html")
 
 @app.route('/sign-up')
 def sign_up():
