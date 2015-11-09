@@ -1,5 +1,3 @@
-"""Italian Restaurants"""
-
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, jsonify, request, session
 # from flask_debugtoolbar import DebugToolbarExtension
@@ -76,7 +74,7 @@ def submit():
     else:
     	session['logged_in_user'] = existing_user.user_name
 
-    return render_template("home.html")
+    return render_template("base.html")
     
 
 @app.route('/log-out')
