@@ -1,6 +1,6 @@
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, jsonify, request, session
-# from flask_debugtoolbar import DebugToolbarExtension
+from flask_debugtoolbar import DebugToolbarExtension
 from model import User, Folder, Place, connect_to_db, db
 import sample_query 
 
@@ -70,12 +70,36 @@ def submit():
     	db.session.add(new_user)
     	db.session.commit()
     	session['logged_in_user'] = new_user.user_name
+        session['firstname'] = new_user.fname
         #
     else:
     	session['logged_in_user'] = existing_user.user_name
+        session['firstname'] = existing_user.fname
 
     return render_template("base.html")
     
+
+@app.route('/logged-in', methods=["POST"])
+def log_in():
+    """Log in page. Need to make sure the user enter correct password."""
+
+    user = request.form.get("username")
+    password = request.form.get("password")
+
+    existing_user = User.query.filter_by(user_name=user, password=password).first()
+    
+
+    if user == existing_user.user_name:
+        session['logged_in_user'] = existing_user.user_name
+        session['firstname'] = existing_user.fname
+    else:
+        print "Try again"
+
+    print "\n\n\n\n\n %s \n\n\n\n" % (existing_user.user_name) 
+
+    return render_template("base.html")
+
+
 
 @app.route('/log-out')
 def log_out():
@@ -102,6 +126,6 @@ if __name__ == "__main__":
     connect_to_db(app)
 
     # Use the DebugToolbar
-    # DebugToolbarExtension(app)
+    DebugToolbarExtension(app)
 
     app.run()

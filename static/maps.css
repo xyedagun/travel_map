@@ -164,7 +164,9 @@ h4 {
   left: initial;
   font-size: 14px;
 }
-
+.container {
+  width: 1200px;
+}
 
 /*--------------------------------*/
 /*Modal*/

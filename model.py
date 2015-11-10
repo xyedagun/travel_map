@@ -14,7 +14,7 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_name = db.Column(db.String(30), nullable=False)
+    user_name = db.Column(db.String(30), nullable=False, unique=True)
     fname = db.Column(db.String(30), nullable=False)
     lname = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(64), nullable=True)
@@ -67,7 +67,7 @@ def connect_to_db(app):
     """Connect the database to our Flask app."""
 
     # Configure to use our SQLite database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///restaurants.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///placesquery.db'
     db.app = app
     db.init_app(app)
 

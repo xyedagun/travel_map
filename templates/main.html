@@ -3,7 +3,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="/static/mapstyles.js"></script>
+    <script src="/static/js/mapstyles.js"></script>
 
 
 {% endblock %}
@@ -13,7 +13,7 @@
 
 
 {% for place in api_result %}
-<!-- <div id="top-padding"></div> -->
+
 <div id ="list_container">
 	{% if place['name'] %}
 	<h4>{{place['name']}}</h4>
@@ -36,7 +36,31 @@
 {% endfor %}
 
 
-    <div id="map-template"></div>
+    
 {% endblock %}
+{% block js %}
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude; 
+}
+</script>
+<!-- put page-specific JS here on other templates -->
+{% endblock %}
+
 
 
