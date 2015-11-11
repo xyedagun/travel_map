@@ -4,6 +4,8 @@
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/static/js/mapstyles.js"></script>
+    <script src="/static/maps.js"></script>
+    
 
 
 {% endblock %}
@@ -14,11 +16,11 @@
 
 {% for place in api_result %}
 
-<div id ="list_container">
+<div class="yelpImage list_container" id="{{ place['id'] }}">
 	{% if place['name'] %}
 	<h4>{{place['name']}}</h4>
 	{% endif %}
-	<p><b>{{ place.get('display_phone') }}</b></p>
+	<p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
 	{% if place.get('image_url') %}
 	<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
 	{% else %}
@@ -33,12 +35,45 @@
 	<p>{{ place['location']['city'] }}</p>
 </div>
 
-{% endfor %}
+
+<!-- Modal -->
+
+<div class="modal fade" id="modal{{ place['id'] }}" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+			<div class="modal-body">
+			{% if place['name'] %}
+			<h4 id="{{ place['id'] }}-name">{{place['name']}}</h4>
+			{% endif %}
+			<p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
+			{% if place.get('image_url') %}
+			<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
+			{% else %}
+			<div class="image-container"><img src="static/img/placeholder.png" alt="image placeholder" style="width:100px;height:100px;"></div>
+			{% endif %}
+			<button id="{{ place['id'] }}-save" class="btn btn-default">Save to Folder</button>
+
+
+			<!-- add save button to be saved in database -->
+				<div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Close
+                </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}            
+{% endblock %}
 
 
     
-{% endblock %}
 {% block js %}
+<script src="/static/js/map.js"></script>
+<!-- 
 <p>Click the button to get your coordinates.</p>
 
 <button onclick="getLocation()">Try It</button>
@@ -59,6 +94,10 @@ function showPosition(position) {
     "<br>Longitude: " + position.coords.longitude; 
 }
 </script>
+ -->
+
+
+
 <!-- put page-specific JS here on other templates -->
 {% endblock %}
 

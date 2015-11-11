@@ -7,6 +7,7 @@
     <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
    <link href="/static/maps.css" rel="stylesheet">
+   <script src="/static/js/map.js"></script>
     
 
   {% block head %}
@@ -28,15 +29,15 @@
                 <input type="text" class="form-control" name="location" id="search" placeholder="Type city name">
             </div>
             <button id ="submit-button" type="submit" value="search"class="btn btn-default">Search</button>
-            {% if "firstname" in session %}
-            <div>
-            <h4>Welcome</h4><h4>{{ session['firstname']}}</h4>
-            </div>
-            <button type="button" id ="Logout-button" class="btn btn-primary" >Log out</button>
-            {% else %}
+            {% if "firstname" not in session %}
             <button type="button" id ="login-button" class="btn btn-primary" data-toggle="modal" data-target="#myLoginModal">Log In</button>
             <button type="button" id ="Signup-button" class="btn btn-primary" data-toggle="modal" data-target="#mySignUpModal">Sign Up</button>
 
+            {% else %}
+             <div>
+            <h4>Welcome</h4><h4>{{ session['firstname']}}</h4>
+            </div>
+            <button type="button" action="/log-out" id ="Logout-button" class="btn btn-primary" >Log out</button>
             {% endif %}      
 	      </form>
 	    </center>

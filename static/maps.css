@@ -59,7 +59,7 @@ input.span3 {
 
 
 
-#list_container {
+.list_container {
     padding-left: 20px;
     padding-top: 20px;
     width: 560px;
@@ -72,7 +72,7 @@ input.span3 {
 
 }
 
-#list_container p {
+.list_container p {
     font-size: 1em;
     text-indent: left;
     text-align: left;
@@ -86,7 +86,7 @@ input.span3 {
 }*/
 
 
-#list_container img{
+.list_container img{
     position: relative;
     float: right;
     margin-left: auto;
@@ -96,7 +96,7 @@ input.span3 {
     top:50%;
 }
 
-#list_container a{
+.list_container a{
     color: #fdf1d6;
 }
 

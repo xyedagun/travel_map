@@ -49,7 +49,9 @@ def process_form():
     return render_template('main.html', api_result=api_result) # the api_result will be included on the map.html
 
 
-
+@app.route('/add-to-folder', methods=["POST"])
+def add_to_folder():
+    return "OK"
 
 
 @app.route('/submit', methods=["POST"])
@@ -94,8 +96,6 @@ def log_in():
         session['firstname'] = existing_user.fname
     else:
         print "Try again"
-
-    print "\n\n\n\n\n %s \n\n\n\n" % (existing_user.user_name) 
 
     return render_template("base.html")
 
