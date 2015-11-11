@@ -1,20 +1,20 @@
-// var baseUrl = 'http://localhost:5000';
+var baseUrl = 'http://localhost:5000';
 
-// function addPlaceToFolder(button, placeId) {
-// 	var name = $('#' + placeId + '-name').text();
-// 	var data = {name: name};
+function addPlaceToFolder(button, placeId) {
+	var name = $('#' + placeId + '-name').text();
+	var data = {name: name};
 
-// 	$.post(baseUrl + '/add-to-folder', data, function(response) {
-// 		button.text("Remove");
-// 		var wasAdded = response['added'];
-// 		if (wasAdded) {
-// 			// change to remove
-// 		} else {
-// 			// change to "Save to Folder"
-// 		}
-// 		console.log("Got from the server: " + response);
-// 	});
-// }
+	$.post(baseUrl + '/add-to-folder', data, function(response) {
+		button.text("Remove");
+		var wasAdded = response['added'];
+		if (wasAdded) {
+			// change to remove
+		} else {
+			// change to "Save to Folder"
+		}
+		console.log("Got from the server: " + response);
+	});
+}
 
 $(document).on('ready', function() {
 	$('.yelpImage').on('click', function(evt){ //when you click on .yelpImage class, this function runs
