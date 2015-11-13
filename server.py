@@ -91,7 +91,7 @@ def log_in():
     password = request.form.get("password")
 
     existing_user = User.query.filter_by(user_name=user, password=password).first()
-    
+
 
     if user == existing_user.user_name:
         session['logged_in_user'] = existing_user.user_name
@@ -101,6 +101,52 @@ def log_in():
 
     return render_template("base.html")
 
+
+
+@app.route('/modal-loggedIn', methods=["POST"])
+def modalLoggedIn():
+    """Log in in modal window"""
+
+    user = request.form.get("username")
+    password = request.form.get("password")
+
+    existing_user = User.query.filter_by(user_name=user, password=password).first()
+
+    if user == existing_user.user_name:
+        session['logged_in_user'] = existing_user.user_name
+        session['firstname'] = existing_user.fname
+    else:
+        print "Try again"
+
+    return render_template("base.html")
+
+
+
+@app.route('/signup', methods=["POST"])
+def signUp():
+    """Sign up page in modal window"""
+
+    user = request.form.get("username")
+    first_name = request.form.get("firstname")
+    last_name = request.form.get("lastname")
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    existing_user = User.query.filter(User.user_name == user).first()
+
+    if not existing_user:
+        new_user = User(user_name=user, fname=first_name, lname=last_name, email=email, password=password)
+        #white is column name from route, orange is the variable from model.py
+        db.session.add(new_user)
+        db.session.commit()
+        session['logged_in_user'] = new_user.user_name
+        session['firstname'] = new_user.fname
+        #
+    else:
+        session['logged_in_user'] = existing_user.user_name
+        session['firstname'] = existing_user.fname
+
+    return render_template("base.html")
 
 
 @app.route('/log-out')
@@ -120,7 +166,9 @@ def log_out():
 
 
 
-
+@app.route('/map')
+def map():
+    return render_template("map_sample.html")
 
     
 
