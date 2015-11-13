@@ -30,16 +30,17 @@
             </div>
             <button id ="submit-button" type="submit" value="search"class="btn btn-default">Search</button>
             </form>
-            <div id="log-in-welcome">
+            <div id="login-welcome">
             {% if "firstname" not in session %}
             <button type="button" id ="login-button" class="btn btn-primary" data-toggle="modal" data-target="#myLoginModal">Log In</button>
             <button type="button" id ="Signup-button" class="btn btn-primary" data-toggle="modal" data-target="#mySignUpModal">Sign Up</button>
 
             {% else %}
-             <div>
-            <h4>Welcome</h4><h4>{{ session['firstname']}}</h4>
-            </div>
+             <div id="greeting" >
+            <h4>Welcome&nbsp;</h4><h4>{{ session['firstname']}}</h4>
+            &nbsp;&nbsp;&nbsp;
             <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a>
+            </div>
             {% endif %}      
 	         </div>
 	    </center>
@@ -103,7 +104,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default">Log in</button>
+                      <button type="submit" class="btn btn-primary">Log in</button>
                     </div>
                   </div>
                 </form>
@@ -111,7 +112,7 @@
             
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default"
+                <button type="button" class="btn btn-primary"
                         data-dismiss="modal">
                             Close
                 </button>
