@@ -1,5 +1,5 @@
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, jsonify, request, session
+from flask import Flask, render_template, jsonify, request, session, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from model import User, Folder, Place, connect_to_db, db
 import sample_query 
@@ -51,6 +51,8 @@ def process_form():
 
 @app.route('/add-to-folder', methods=["POST"])
 def add_to_folder():
+
+
     return "OK"
 
 
@@ -104,13 +106,17 @@ def log_in():
 @app.route('/log-out')
 def log_out():
     """Log out page"""
-    if not 'logged_in_user' in session:
-    	message = "You're not logged in"
-    else:
-    	message = "You've been logged out"
-    	del session['logged_in_user']
+
+
+    session.clear()
+
+    # if not 'logged_in_user' in session:
+    # 	message = "You're not logged in"
+    # else:
+    # 	message = "You've been logged out"
+    # 	del session['logged_in_user']
     	#to delete user from session
-    return render_template("logout.html", message = message) 
+    return redirect("/") 
 
 
 

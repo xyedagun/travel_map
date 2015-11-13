@@ -7,14 +7,17 @@ function addPlaceToFolder(button, placeId) {
 	$.post(baseUrl + '/add-to-folder', data, function(response) {
 		button.text("Remove");
 		var wasAdded = response['added'];
-		if (wasAdded) {
-			// change to remove
-		} else {
-			// change to "Save to Folder"
-		}
+		alert("Done!")
+		// if (wasAdded) {
+		// 	// change to remove
+		// } else {
+		// 	// change to "Save to Folder"
+		// }
 		console.log("Got from the server: " + response);
 	});
-}
+};
+
+
 
 $(document).on('ready', function() {
 	$('.yelpImage').on('click', function(evt){ //when you click on .yelpImage class, this function runs
@@ -32,6 +35,16 @@ $(document).on('ready', function() {
 });
 
 
+
+// $(document).on('ready', function(){
+// 	$('.login-button').on('click', function(evt){
+	
+
+// 	});
+
+
+
+// });
 
 
 //need to to target specific div(container)

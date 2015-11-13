@@ -46,18 +46,27 @@
 			{% if place['name'] %}
 			<h4 id="{{ place['id'] }}-name">{{place['name']}}</h4>
 			{% endif %}
-			<p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
+			<p class="placePhone"><b class="modalPlacePhone">{{ place.get('display_phone') }}</b></p>
 			{% if place.get('image_url') %}
 			<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
 			{% else %}
 			<div class="image-container"><img src="static/img/placeholder.png" alt="image placeholder" style="width:100px;height:100px;"></div>
 			{% endif %}
+			<p class="modal-text">{{ place.get('snippet_text') }}</p><br><br>
+			{% if place['location']['address'] %}
+			<p class="modal-text">{{ place['location']['address'][0] }}</p><br>
+			{% endif %}
+			<p class="modal-text">{{ place['location']['city'] }}</p>
+			{% if 'logged_in_user' in session %}
 			<button id="{{ place['id'] }}-save" class="btn btn-default">Save to Folder</button>
+			{% else %}
+			<button class="login-button" data-toggle="modal" data-target="#myLoginModal">Log in
 
-
+			</button>
+			{% endif %}
 			<!-- add save button to be saved in database -->
 				<div class="modal-footer">
-                <button type="button" class="btn btn-default"
+                <button id="closeButton" type="button" class="btn btn-default"
                         data-dismiss="modal">
                             Close
                 </button>

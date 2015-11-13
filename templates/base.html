@@ -29,6 +29,8 @@
                 <input type="text" class="form-control" name="location" id="search" placeholder="Type city name">
             </div>
             <button id ="submit-button" type="submit" value="search"class="btn btn-default">Search</button>
+            </form>
+            <div id="log-in-welcome">
             {% if "firstname" not in session %}
             <button type="button" id ="login-button" class="btn btn-primary" data-toggle="modal" data-target="#myLoginModal">Log In</button>
             <button type="button" id ="Signup-button" class="btn btn-primary" data-toggle="modal" data-target="#mySignUpModal">Sign Up</button>
@@ -37,9 +39,9 @@
              <div>
             <h4>Welcome</h4><h4>{{ session['firstname']}}</h4>
             </div>
-            <button type="button" action="/log-out" id ="Logout-button" class="btn btn-primary" >Log out</button>
+            <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a>
             {% endif %}      
-	      </form>
+	         </div>
 	    </center>
 	    </div>
 	</div>

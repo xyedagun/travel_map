@@ -192,4 +192,16 @@ h4 {
 .form-group label{
     color: black;
 }
-.form-group 
+p.modal-text {
+  color: black;
+  font-size: 1em;
+  text-align: left;
+  }
+
+img.modal-body {
+  position: absolute;
+}
+
+#login-welcome{
+  position: right;
+}
