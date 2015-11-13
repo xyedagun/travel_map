@@ -2,9 +2,8 @@
 {% block head %}
 
     <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/static/js/mapstyles.js"></script>
-    <script src="/static/maps.js"></script>
+    
     
 
 
@@ -33,6 +32,10 @@
 	<p>{{ place['location']['address'][0] }}</p><br>
 	{% endif %}
 	<p>{{ place['location']['city'] }}</p>
+
+<!-- {{ place['location']['coordinate']['latitude']}}
+{{ place['location']['coordinate']['longitude']}}  -->
+
 </div>
 
 
@@ -67,7 +70,7 @@
 
 
 			{% if 'logged_in_user' in session %}
-			<a href="/add-to-folder"><button id="{{ place['id'] }}-save" type="button" class="btn btn-default">Save to Folder</button></a>
+			<button id="{{ place['id'] }}-save" data-yelp-id="{{place['id']}}" type="button" class="save-to-folder-button btn btn-default">Save to Folder</button>
 			{% else %}
 			<button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
 			</button>
@@ -257,7 +260,7 @@
 
     
 {% block js %}
-<script src="/static/js/map.js"></script>
+
 <!-- 
 <p>Click the button to get your coordinates.</p>
 

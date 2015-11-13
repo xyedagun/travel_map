@@ -32,7 +32,21 @@ $(document).on('ready', function() {
 			addPlaceToFolder($saveButton, placeId);
 		});
 	});
+
+	$(".save-to-folder-button").on('click', addToFolder);
 });
+
+function addToFolder(evt){
+	var thingTheyClickedOn = evt.currentTarget;
+	var yelpId = $(thingTheyClickedOn).data('yelpId');
+	//send a post resquest via AJAX!!!!! 
+	//figure out which modal(use unique modal iD)/button they click on
+	//make a js object, called postParams={"yelpId": modalId}:
+	//send post request using AJAX
+	//callback: change the button to text confirming action
+	alert("Adding to Folder " + yelpId);
+};
+
 
 
 
