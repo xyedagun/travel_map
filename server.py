@@ -22,20 +22,6 @@ def index():
 
     return render_template("base.html")
 
-@app.route('/sign-up')
-def sign_up():
-    """Sign up page"""
-
-    return render_template("sign_up.html")
-
-
-
-@app.route('/search-city-form')
-def search_city():
-
-    return render_template('search_form.html')
-
-
 
 
 @app.route('/process-search-form', methods=["POST"])
@@ -52,8 +38,11 @@ def process_form():
 @app.route('/add-to-folder', methods=["POST"])
 def add_to_folder():
 
+    user = request.form.get("username")
+    folderName = request.form.get("FolderName")
+    
 
-    return "OK"
+    return render_template("add_folder.html")
 
 
 @app.route('/submit', methods=["POST"])
