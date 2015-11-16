@@ -75,6 +75,8 @@ input.span3 {
     /*opacity: .8;*/
     text-indent: 10px;
     padding-right: 10px;
+    position: relative;
+
 
 }
 
@@ -82,6 +84,7 @@ input.span3 {
     font-size: 1em;
     text-indent: left;
     text-align: left;
+    margin-right: 20px;
 }
 
 /*#img-container {
@@ -171,11 +174,14 @@ h4 {
   font-size: 14px;
 }
 .container {
-  width: 1200px;
+  width: 100%;
 }
 form.navbar-form.navbar-right{
   position: absolute;
 
+}
+.navbar-form .form-control{
+  width: 457px;
 }
 
 /*--------------------------------*/
@@ -216,14 +222,27 @@ img.modal-body {
   position: relative;
   margin: 0 auto;
   width: auto;
-  float: right; 
+  float: right;   
   margin-top: 8px;
 }
 
+.result_header {
+  padding-top: 30px;
+  padding-left: 20px;
+  height: 100px;
+  width: 560px;
+  position: relative;
+  background-color: black;
+  opacity: .6;
+}
 
-
-
-
+.result_header h2{
+  color: white;
+  font-family: Helvetica;
+  font-size: 3em;
+  font-weight: bold;
+  opacity: .99;
+}
 
 
 

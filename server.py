@@ -23,6 +23,23 @@ def index():
     return render_template("base.html")
 
 
+@app.route('/results', methods=['POST'])
+def get_result():
+    location = request.form.get("location")
+
+    attraction_results = sample_query.search_attractions(location)
+    hotel_results = sample_query.search_hotels(location)
+    restaurant_results = sample_query.search_restaurants(location)
+    museum_results = sample_query.search_museums(location)
+    festival_results = sample_query.search_festivals(location)
+
+
+    print attraction_results, hotel_results,location
+
+    return render_template('main.html', attraction_results=attraction_results, hotel_results=hotel_results, restaurant_results=restaurant_results, museum_results=museum_results, festival_results=festival_results)
+
+
+
 
 @app.route('/process-search-form', methods=["POST"])
 def process_form():
@@ -32,6 +49,7 @@ def process_form():
 
     api_result = sample_query.search_places(search, location)
     print location, api_result
+
     return render_template('main.html', api_result=api_result) # the api_result will be included on the map.html
 
 

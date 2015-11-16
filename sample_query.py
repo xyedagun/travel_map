@@ -34,6 +34,64 @@ limit = 0
 class Category(object):
 	RESTAURANT = "restaurants"
 	MUSEUM = "museums"
+	HOTELS = "hotels"
+	NIGHTLIFE = "nightlife"
+	FESTIVALS = "festivals"
+
+
+
+def search_attractions(location, term="tourist attraction"):
+	"""Search by city or country and get top tourist attraction list"""	
+
+	search_result = yelp_api.search_query(location=location, term=term, limit=10)
+
+	return search_result['businesses']
+
+
+
+
+def search_hotels(location, term="HOTELS"):
+	"""Search by city or country and get top hotels"""	
+
+	hotels_result = yelp_api.search_query(location=location, term=term, limit=10)
+
+	return hotels_result['businesses']
+
+
+
+def search_restaurants(location, term="RESTAURANT"):
+	"""Search by city or country and get top restaurants"""	
+
+	restaurants_result = yelp_api.search_query(location=location, term=term, limit=10)
+
+	return restaurants_result['businesses']
+
+
+
+def search_museums(location, term="MUSEUM"):
+	"""Search by city or country and get top museums"""	
+
+	museums_result = yelp_api.search_query(location=location, term=term, limit=10)
+
+	return museums_result['businesses']
+
+
+
+
+def search_festivals(location, term="FESTIVALS"):
+	"""Search by city or country and get top festivals"""	
+
+	festivals_result = yelp_api.search_query(location=location, term=term, limit=10)
+
+	return festivals_result['businesses']
+
+
+
+
+
+
+### function below are no longer needed. ###
+
 
 
 def search_places(query, location, categories=None):
@@ -76,28 +134,28 @@ def search_parks(location, category= "parks", term = "parks", limit = 20, offset
 
 
 
-def search_hotels(location, category= "hotels", term = "hotels", limit = 20, offset = 20):
-	"""This function returns list of hotels based on location"""
-	hotels_results = yelp_api.search_query(location = location, category= category, term = term, limit = limit, offset=offset)
+# def search_hotels(location, category= "hotels", term = "hotels", limit = 20, offset = 20):
+# 	"""This function returns list of hotels based on location"""
+# 	hotels_results = yelp_api.search_query(location = location, category= category, term = term, limit = limit, offset=offset)
 
-	for business in hotels_results['businesses']:
-		if business in hotels_results['businesses']:
-			hotel_name = business['name']
-			print hotel_name
+# 	for business in hotels_results['businesses']:
+# 		if business in hotels_results['businesses']:
+# 			hotel_name = business['name']
+# 			print hotel_name
 			
-	return hotel_results['businesses']
+# 	return hotel_results['businesses']
 
 
 
-def search_museums(location, term = "museums", limit = 20, offset = 20):
-	"""This function returns list of parks based on location"""
-	museum_results = yelp_api.search_query(location = location, term = term, limit = limit, offset=offset)
+# def search_museums(location, term = "museums", limit = 20, offset = 20):
+# 	"""This function returns list of parks based on location"""
+# 	museum_results = yelp_api.search_query(location = location, term = term, limit = limit, offset=offset)
 
-	for business in museum_results['businesses']:
-		if business in museum_results['businesses']:
-			museum_name = business['name']
-			print museum_name
-	return museum_results['businesses']
+# 	for business in museum_results['businesses']:
+# 		if business in museum_results['businesses']:
+# 			museum_name = business['name']
+# 			print museum_name
+# 	return museum_results['businesses']
 
 
 
