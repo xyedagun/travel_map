@@ -33,10 +33,13 @@ def get_result():
     museum_results = sample_query.search_museums(location)
     festival_results = sample_query.search_festivals(location)
 
+    user_id = session.get('user_id')
+    # import pdb; pdb.set_trace()
+    folders = Folder.query.filter_by(user_id=user_id).all()
 
     print attraction_results, hotel_results,location
 
-    return render_template('main.html', attraction_results=attraction_results, hotel_results=hotel_results, restaurant_results=restaurant_results, museum_results=museum_results, festival_results=festival_results)
+    return render_template('main.html', folders=folders, attraction_results=attraction_results, hotel_results=hotel_results, restaurant_results=restaurant_results, museum_results=museum_results, festival_results=festival_results)
 
 
 
@@ -53,14 +56,117 @@ def process_form():
     return render_template('main.html', api_result=api_result) # the api_result will be included on the map.html
 
 
+
 @app.route('/add-to-folder', methods=["POST"])
 def add_to_folder():
 
-    user = request.form.get("username")
-    folderName = request.form.get("FolderName")
+    username = session['logged_in_user']
+    folderName = request.form.get("folder_name")
+    business_id = request.form.get("business_id")
+    existing_place = Place.query.filter_by(business_id = business_id).first()
+    print request.form
+
+    #ask yelp to get data using business_id
+    
+    business = sample_query.yelp_api.business_query(id=business_id)
+    if business['location']['address']:
+        address = business['location']['address'][0]
+    else:
+        address = ""
+    import pdb; pdb.set_trace()
+    if business['categories'][0]:
+        category_description, category = business['categories'][0]
+    else:
+        category = ""
+
+    if business['name']:
+        name = business['name']
+    else:
+        name = ""
+
+    if business['location']['coordinate']['latitude']:
+        latitude = business['location']['coordinate']['latitude']
+    else:
+        latitude = None
+
+    if business['location']['coordinate']['longitude']:
+        longitude = business['location']['coordinate']['longitude']
+    else:
+        longitude = None
+
+    if business['location']['city']:
+        city = business['location']['city']
+    else:
+        city = ""
+
+    if business['location']['country_code']:
+        country = business['location']['country_code']
+    else:
+        country = ""
     
 
+    if not existing_place:
+        
+        new_place = Place(business_id=business_id, category=category, name=name, address=address, latitude=latitude, longitude=longitude, city=city, country=country)
+
+        db.session.add(new_place)
+        db.session.commit()
+        place_id = new_place.place_id
+    else:
+        place_id = existing_place.place_id
+
+    #Need to check if folder already exist in user's folders
+
+    folder = Folder.query.filter_by(user = username, folder_name = folderName).first()
+
+    if not folder:
+        new_folder = Folder(user=username, folder_name=folderName)
+        
+        db.session.add(new_folder)
+        db.session.commit()
+        folder_id = new_folder.folder_id
+
+        folder = new_folder
+
+    # TODO: Find a way to add the place to the folder (and then save them)
+
+
+#create place folder if it doesn't exist or if it does, use it.
+# import pdb; pdb.set_trace()  n = next line c = continue until next break point  
+   
+
     return render_template("add_folder.html")
+
+
+@app.route('/folders')
+def show_folders():
+    
+    user_id = session.get('user_id')
+    import pdb; pdb.set_trace()
+    folders = Folder.query.filter_by(user_id=user_id).all()
+
+    # we're done - we just need to serialize these folders and return them
+    folder_dicts = []
+    for folder in folders:
+        folder_dicts.append(folder.to_dict())
+
+    return jsonify({'folders': folder_dicts})
+
+
+
+
+@app.route('/create_folder', methods=["POST"])
+def create_folder():
+
+    user = request.form.get("username")
+    folderName = request.form.get("FolderName")
+    existing_user = User.query.filter(User.user_name == user).first()
+
+    return render_template("add_folder.html")
+
+
+
+
 
 
 @app.route('/submit', methods=["POST"])
@@ -103,6 +209,7 @@ def log_in():
     if user == existing_user.user_name:
         session['logged_in_user'] = existing_user.user_name
         session['firstname'] = existing_user.fname
+        session['user_id'] = existing_user.user_id
     else:
         print "Try again"
 
@@ -139,6 +246,7 @@ def signUp():
     email = request.form.get("email")
     password = request.form.get("password")
 
+
     existing_user = User.query.filter(User.user_name == user).first()
 
     if not existing_user:
@@ -148,10 +256,12 @@ def signUp():
         db.session.commit()
         session['logged_in_user'] = new_user.user_name
         session['firstname'] = new_user.fname
+        session['user_id'] = new_user.user_id
         #
     else:
         session['logged_in_user'] = existing_user.user_name
         session['firstname'] = existing_user.fname
+        session['user_id'] = existing_user.user_id
 
     return render_template("base.html")
 
@@ -175,6 +285,7 @@ def log_out():
 
 @app.route('/map')
 def map():
+
     return render_template("map_sample.html")
 
     

@@ -53,7 +53,7 @@
 			{% if place['name'] %}
 			<h4 id="{{ place['id'] }}-name">{{place['name']}}</h4>
 			{% endif %}
-			<p class="placePhone"><b class="modalPlacePhone">{{ place.get('display_phone') }}</b></p>
+			<p class="placeModalPhone">{{ place.get('display_phone') }}</p>
 			{% if place.get('image_url') %}
 			<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
 			{% else %}
@@ -72,9 +72,22 @@
 
 
 
-
+<!-- Save to folder button-->
 			{% if 'logged_in_user' in session %}
-			<button id="{{ place['id'] }}-save" data-yelp-id="{{place['id']}}" type="button" class="save-to-folder-button btn btn-default">Save to Folder</button>
+      <div class="dropdown">
+        <button id="{{ place['id'] }}-save" data-yelp-id="{{place['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="/">Create a Folder</a></li>
+
+            {% for folder in folders %}
+            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+            {% endfor %}
+          </ul>
+      </div>
+
+
+
 			{% else %}
 			<button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
 			</button>
@@ -110,7 +123,7 @@
   {% if hotel['name'] %}
   <h4>{{hotel['name']}}</h4>
   {% endif %}
-  <p class="placePhone"><b>{{ hotel.get('display_phone') }}</b></p>
+  <p class="placePhone">{{ hotel.get('display_phone') }}</p>
   {% if hotel.get('image_url') %}
   <div class="image-container"><img src="{{ hotel['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -140,7 +153,7 @@
       {% if hotel['name'] %}
       <h4 id="{{ hotel['id'] }}-name">{{hotel['name']}}</h4>
       {% endif %}
-      <p class="placePhone"><b class="modalPlacePhone">{{ hotel.get('display_phone') }}</b></p>
+      <p class="placeModalPhone">{{ hotel.get('display_phone') }}</p>
       {% if hotel.get('image_url') %}
       <div class="image-container"><img src="{{ hotel['image_url'] }}" alt="snippet_image"></div>
       {% else %}
@@ -160,8 +173,20 @@
 
 
 
+
+    <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
-      <button id="{{ hotel['id'] }}-save" data-yelp-id="{{hotel['id']}}" type="button" class="save-to-folder-button btn btn-default">Save to Folder</button>
+      <div class="dropdown">
+        <button id="{{ hotel['id'] }}-save" data-yelp-id="{{hotel['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Create a Folder</a></li>
+            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+          </ul>
+      </div>
+
       {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
@@ -199,7 +224,7 @@
   {% if restaurant['name'] %}
   <h4>{{restaurant['name']}}</h4>
   {% endif %}
-  <p class="placePhone"><b>{{ restaurant.get('display_phone') }}</b></p>
+  <p class="placePhone">{{ restaurant.get('display_phone') }}</p>
   {% if restaurant.get('image_url') %}
   <div class="image-container"><img src="{{ restaurant['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -229,7 +254,7 @@
       {% if restaurant['name'] %}
       <h4 id="{{ restaurant['id'] }}-name">{{restaurant['name']}}</h4>
       {% endif %}
-      <p class="placePhone"><b class="modalPlacePhone">{{ restaurant.get('display_phone') }}</b></p>
+      <p class="placeModalPhone">{{ restaurant.get('display_phone') }}</p>
       {% if restaurant.get('image_url') %}
       <div class="image-container"><img src="{{ restaurant['image_url'] }}" alt="snippet_image"></div>
       {% else %}
@@ -244,10 +269,21 @@
 
           MAP
 
-      </div>      
+      </div> 
 
+        <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
-      <button id="{{ restaurant['id'] }}-save" data-yelp-id="{{restaurant['id']}}" type="button" class="save-to-folder-button btn btn-default">Save to Folder</button>
+      <div class="dropdown">
+        <button id="{{ restaurant['id'] }}-save" data-yelp-id="{{restaurant['id']}}"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Create a Folder</a></li>
+            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+          </ul>
+      </div>
+
       {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
@@ -282,7 +318,7 @@
   {% if museum['name'] %}
   <h4>{{museum['name']}}</h4>
   {% endif %}
-  <p class="placePhone"><b>{{ museum.get('display_phone') }}</b></p>
+  <p class="placePhone">{{ museum.get('display_phone') }}</p>
   {% if museum.get('image_url') %}
   <div class="image-container"><img src="{{ museum['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -312,7 +348,7 @@
       {% if museum['name'] %}
       <h4 id="{{ museum['id'] }}-name">{{museum['name']}}</h4>
       {% endif %}
-      <p class="placePhone"><b class="modalPlacePhone">{{ museum.get('display_phone') }}</b></p>
+      <p class="placeModalPhone">{{ museum.get('display_phone') }}</p>
       {% if museum.get('image_url') %}
       <div class="image-container"><img src="{{ museum['image_url'] }}" alt="snippet_image"></div>
       {% else %}
@@ -327,10 +363,21 @@
 
           MAP
 
-      </div>      
+      </div>   
 
+              <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
-      <button id="{{ museum['id'] }}-save" data-yelp-id="{{museum['id']}}" type="button" class="save-to-folder-button btn btn-default">Save to Folder</button>
+      <div class="dropdown">
+        <button id="{{ museum['id'] }}-save" data-yelp-id="{{museum['id']}}"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Create a Folder</a></li>
+            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+          </ul>
+      </div>   
+
       {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
@@ -365,7 +412,7 @@
   {% if festival['name'] %}
   <h4>{{festival['name']}}</h4>
   {% endif %}
-  <p class="placePhone"><b>{{ festival.get('display_phone') }}</b></p>
+  <p class="placePhone">{{ festival.get('display_phone') }}</p>
   {% if festival.get('image_url') %}
   <div class="image-container"><img src="{{ festival['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -395,7 +442,7 @@
       {% if festival['name'] %}
       <h4 id="{{ festival['id'] }}-name">{{festival['name']}}</h4>
       {% endif %}
-      <p class="placePhone"><b class="modalPlacePhone">{{ festival.get('display_phone') }}</b></p>
+      <p class="placeModalPhone">{{ festival.get('display_phone') }}</p>
       {% if festival.get('image_url') %}
       <div class="image-container"><img src="{{ festival['image_url'] }}" alt="snippet_image"></div>
       {% else %}
@@ -412,8 +459,20 @@
 
       </div>      
 
+              <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
-      <button id="{{ festival['id'] }}-save" data-yelp-id="{{festival['id']}}" type="button" class="save-to-folder-button btn btn-default">Save to Folder</button>
+      <div class="dropdown">
+        <button id="{{ festival['id'] }}-save" data-yelp-id="{{festival['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Create a Folder</a></li>
+            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
+            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+          </ul>
+      </div>   
+      
+
       {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>

@@ -1,10 +1,32 @@
-var baseUrl = 'http://localhost:5000';
 
-function addPlaceToFolder(button, placeId) {
-	var name = $('#' + placeId + '-name').text();
-	var data = {name: name};
+$(document).on('ready', function() {
+	$('.yelpImage').on('click', function(evt){ //when you click on .yelpImage class, this function runs
+		var thingTheyClickedOn = evt.currentTarget;
+		console.log(thingTheyClickedOn)		//thingTheyClickedOn is the area where user can click within the yelpImage class
+		var placeId = thingTheyClickedOn.id;
+		console.log(placeId) // var placeId getting the ID of the place(rendered by jinja)
+		var modalToShowId = 'modal' + placeId;//this variable is naming the modal adding the string "modal" and the id from YELP
+		$('#'+ modalToShowId).modal(); //jquery: the id(#) plus the modalToShow, make a modal
+		console.log('yo');
 
-	$.post(baseUrl + '/add-to-folder', data, function(response) {
+		$('#' + modalToShowId).find(".save-to-folder-button").on('click', function(e) {
+			addPlaceToFolder(e.currentTarget, placeId);
+		});
+	});
+});
+
+
+function addPlaceToFolder(folderElement, placeId) {
+	var foldername = $(folderElement).text();
+	var data = {"business_id": placeId,
+				"folder_name": foldername};
+
+	debugger;
+
+	$.post('/add-to-folder', data, function(response) {
+
+
+
 		button.text("Remove");
 		var wasAdded = response['added'];
 		alert("Done!")
@@ -19,33 +41,8 @@ function addPlaceToFolder(button, placeId) {
 
 
 
-$(document).on('ready', function() {
-	$('.yelpImage').on('click', function(evt){ //when you click on .yelpImage class, this function runs
-		var thingTheyClickedOn = evt.currentTarget;//thingTheyClickedOn is the area where user can click within the yelpImage class
-		var placeId = thingTheyClickedOn.id; // var placeId getting the ID of the place(rendered by jinja)
-		var modalToShowId = 'modal' + placeId;//this variable is naming the modal adding the string "modal" and the id from YELP
-		$('#'+ modalToShowId).modal(); //jquery: the id(#) plus the modalToShow, make a modal
-		console.log('yo');
 
-		var $saveButton = $('#' + placeId, '-save');
-		$saveButton.on('click', function(e) {
-			addPlaceToFolder($saveButton, placeId);
-		});
-	});
 
-	$(".save-to-folder-button").on('click', addToFolder);
-});
-
-function addToFolder(evt){
-	var thingTheyClickedOn = evt.currentTarget;
-	var yelpId = $(thingTheyClickedOn).data('yelpId');
-	//send a post resquest via AJAX!!!!! 
-	//figure out which modal(use unique modal iD)/button they click on
-	//make a js object, called postParams={"yelpId": modalId}:
-	//send post request using AJAX
-	//callback: change the button to text confirming action
-	alert("Adding to Folder " + yelpId);
-};
 
 
 

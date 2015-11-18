@@ -118,6 +118,13 @@ h4 {
 #submit-button{
     color: black;
 }
+
+.placeModalPhone {
+  font-size: 1.2em;
+  color: black;
+
+}
+
 /*--------------------------------*/
 /*Search button*/
 /*--------------------------------*/

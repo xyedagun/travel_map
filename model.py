@@ -21,46 +21,66 @@ class User(db.Model):
     password = db.Column(db.String(64), nullable=True)
 
     def __repr__(self):
-    	"""Provide helpful representation when printed."""
-	
+        """Provide helpful representation when printed."""
+    
         return "<User user_name=%s fname=%s lname=%s email=%s >" % (self.user_name, self.fname, self.lname, self.email)
 
 
 class Folder(db.Model):
-	"""Folder table for each user"""
+    """Folder table for each user"""
 
-	__tablename__ = "folders"
-	
-	folder_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	folder_name = db.Column(db.String(64), nullable=False)
-	user = db.Column(db.String(30), db.ForeignKey('users.user_name'), nullable=False)
+    __tablename__ = "folders"
+    
+    folder_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    folder_name = db.Column(db.String(64), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
-	def __repr__(self):
-		"""Provide helpful representation when printed."""
-	
-		return "<Folder folder_name=%s user=%s >" % (self.folder_name, self.user)
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+    
+        return "<Folder folder_name=%s user=%s >" % (self.folder_name, self.user_id)
+
+    def to_dict(self):
+        return {
+            'id': self.folder_id,
+            'name': self.folder_name,
+            'user_id': self.user_id,
+        }
 
 
 class Place(db.Model):
-	"""Table for places saved in the folder"""
+    """Table for places saved in the folder"""
 
- 	__tablename__ = "places"
+    __tablename__ = "places"
 
- 	place_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
- 	business_id = db.Column(db.String(100), nullable=False)
- 	category = db.Column(db.String(64), nullable=False)
- 	name = db.Column(db.String(100), nullable=True)
- 	address = db.Column(db.String(100), nullable=True)
- 	latitude = db.Column(db.String(100), nullable=False)
- 	longtitude = db.Column(db.String(100), nullable=False)
- 	city = db.Column(db.String(50), nullable=True)
- 	country = db.Column(db.String(50), nullable=False)
+    place_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    business_id = db.Column(db.String(100), nullable=False)
+    category = db.Column(db.String(64), nullable=False)
+    name = db.Column(db.String(100), nullable=True)
+    address = db.Column(db.String(100), nullable=True)
+    latitude = db.Column(db.Float, nullable=True)
+    longitude = db.Column(db.Float, nullable=True)
+    city = db.Column(db.String(50), nullable=True)
+    country = db.Column(db.String(50), nullable=False)
 
- 	def __repr__(self):
- 		"""Provide helpful representation when printed."""
-	
-		return "<Place category=%s name=%s address=%s >" % (self.category, self.name, self.address)
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+    
+        return "<Place category=%s name=%s address=%s >" % (self.category, self.name, self.address)
 
+
+class Place_folder(db.Model):
+    """Association table for places and folders tables"""
+
+    __tablename__ = "places_folders"
+
+    place_folder_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    place_id = db.Column(db.Integer, db.ForeignKey('places.place_id'), nullable=False)
+    folder_id = db.Column(db.Integer, db.ForeignKey('folders.folder_id'), nullable=False)
+
+    def __repr__(self):
+
+        return "<Association table id=%s>" % (self.id)
 
 # Helper functions
 def connect_to_db(app):
