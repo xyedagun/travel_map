@@ -25,6 +25,7 @@
 <!--             <div class="form-group">
                 <input type="text" class="form-control" name="query" id="search" placeholder="Looking for?">
             </div> -->
+            
             <div class="form-group">
                 <input type="text" class="form-control" name="location" id="search" placeholder="Your destination">
             </div>
@@ -39,7 +40,13 @@
              <div id="greeting" >
             <h4>Welcome&nbsp;</h4><h4>{{ session['firstname']}}</h4>
             &nbsp;&nbsp;&nbsp;
+            
+            
+            <button type="button" id ="folderList" class="btn btn-default" data-hover="dropdown" data-target="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Folders List</button>
+            
+        
             <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a>
+
             </div>
             {% endif %}      
 	         </div>

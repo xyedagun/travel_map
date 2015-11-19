@@ -21,7 +21,7 @@ function addPlaceToFolder(folderElement, placeId) {
 	var data = {"business_id": placeId,
 				"folder_name": foldername};
 
-	debugger;
+	// debugger;
 
 	$.post('/add-to-folder', data, function(response) {
 

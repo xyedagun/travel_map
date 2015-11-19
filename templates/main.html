@@ -78,14 +78,15 @@
         <button id="{{ place['id'] }}-save" data-yelp-id="{{place['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="/">Create a Folder</a></li>
 
             {% for folder in folders %}
             <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
             {% endfor %}
           </ul>
       </div>
-
+      <div class="createFolder">
+      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+      </div>
 
 
 			{% else %}
@@ -180,11 +181,15 @@
         <button id="{{ hotel['id'] }}-save" data-yelp-id="{{hotel['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">Create a Folder</a></li>
-            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+            <li><a href="/">Create a Folder</a></li>
+
+             {% for folder in folders %}
+            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+            {% endfor %}
           </ul>
+      </div>
+      <div class="createFolder">
+      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
       </div>
 
       {% else %}
@@ -277,11 +282,15 @@
         <button id="{{ restaurant['id'] }}-save" data-yelp-id="{{restaurant['id']}}"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">Create a Folder</a></li>
-            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+            <li><a href="/">Create a Folder</a></li>
+
+             {% for folder in folders %}
+            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+            {% endfor %}
           </ul>
+      </div>
+      <div class="createFolder">
+      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
       </div>
 
       {% else %}
@@ -371,12 +380,16 @@
         <button id="{{ museum['id'] }}-save" data-yelp-id="{{museum['id']}}"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">Create a Folder</a></li>
-            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+            <li><a href="/">Create a Folder</a></li>
+
+             {% for folder in folders %}
+            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+            {% endfor %}
           </ul>
-      </div>   
+      </div>
+      <div class="createFolder">
+      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+      </div>
 
       {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
@@ -465,12 +478,16 @@
         <button id="{{ festival['id'] }}-save" data-yelp-id="{{festival['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">Create a Folder</a></li>
-            <li class="save-to-folder-button"><a href="#">Future Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Seattle Trip</a></li>
-            <li class="save-to-folder-button"><a href="#">Euro Trip 2016</a></li>
+            <li><a href="/">Create a Folder</a></li>
+
+             {% for folder in folders %}
+            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+            {% endfor %}
           </ul>
-      </div>   
+      </div>
+      <div class="createFolder">
+      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+      </div>
       
 
       {% else %}

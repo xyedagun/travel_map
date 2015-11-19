@@ -1,7 +1,7 @@
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, jsonify, request, session, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from model import User, Folder, Place, connect_to_db, db
+from model import User, Folder, Place, Place_folder, connect_to_db, db
 import sample_query 
 
 
@@ -51,7 +51,7 @@ def process_form():
     location = request.form.get("location")
 
     api_result = sample_query.search_places(search, location)
-    print location, api_result
+    # print location, api_result
 
     return render_template('main.html', api_result=api_result) # the api_result will be included on the map.html
 
@@ -61,10 +61,11 @@ def process_form():
 def add_to_folder():
 
     username = session['logged_in_user']
+    print username
     folderName = request.form.get("folder_name")
     business_id = request.form.get("business_id")
     existing_place = Place.query.filter_by(business_id = business_id).first()
-    print request.form
+    # print request.form
 
     #ask yelp to get data using business_id
     
@@ -73,7 +74,6 @@ def add_to_folder():
         address = business['location']['address'][0]
     else:
         address = ""
-    import pdb; pdb.set_trace()
     if business['categories'][0]:
         category_description, category = business['categories'][0]
     else:
@@ -104,7 +104,8 @@ def add_to_folder():
     else:
         country = ""
     
-
+    print session['user_id']
+    print folderName
     if not existing_place:
         
         new_place = Place(business_id=business_id, category=category, name=name, address=address, latitude=latitude, longitude=longitude, city=city, country=country)
@@ -115,34 +116,68 @@ def add_to_folder():
     else:
         place_id = existing_place.place_id
 
-    #Need to check if folder already exist in user's folders
+    folder = Folder.query.filter_by(user_id = session['user_id'], folder_name = folderName).first()
+    print folder
+    folder_id = folder.folder_id
+    print folder_id, place_id
+    new_place_folder = Place_folder(place_id=place_id, folder_id=folder_id)
+    db.session.add(new_place_folder)
+    db.session.commit()
 
-    folder = Folder.query.filter_by(user = username, folder_name = folderName).first()
 
-    if not folder:
-        new_folder = Folder(user=username, folder_name=folderName)
+
+    return redirect("/results")
+
+
+
+
+
+
+
+        #Need to check if folder already exist in user's folders
+
+    
+
+    # if not folder:
+    #     new_folder = Folder(user=username, folder_name=folderName)
         
-        db.session.add(new_folder)
-        db.session.commit()
-        folder_id = new_folder.folder_id
+    #     db.session.add(new_folder)
+    #     db.session.commit()
+    #     folder_id = new_folder.folder_id
 
-        folder = new_folder
+    #     folder = new_folder
+
+
+    # place_in_folder = Place_folder.filter_by(place_id=place_id, folder_id=folder_id).first()
+        
+    # if not place_in_folder:
+    #     new_place_folder = Place_folder(place_id=place_id, folder_id=folder_id)
+
+    #     db.session.add(new_place_folder)
+    #     db.session.commit()
+
+    # else:
+    #     place_in_folder = place_in_folder
+
+
+    # if the new place not in an existing folder, add it to folder. Otherwise, add it to new folder. (places_folders)
+
 
     # TODO: Find a way to add the place to the folder (and then save them)
+    # using place_folder database, I can link place and folder using their id's.
 
 
-#create place folder if it doesn't exist or if it does, use it.
 # import pdb; pdb.set_trace()  n = next line c = continue until next break point  
    
 
-    return render_template("add_folder.html")
+
 
 
 @app.route('/folders')
 def show_folders():
+    """This is to query folder based on logged in user"""
     
     user_id = session.get('user_id')
-    import pdb; pdb.set_trace()
     folders = Folder.query.filter_by(user_id=user_id).all()
 
     # we're done - we just need to serialize these folders and return them
@@ -160,9 +195,19 @@ def create_folder():
 
     user = request.form.get("username")
     folderName = request.form.get("FolderName")
-    existing_user = User.query.filter(User.user_name == user).first()
 
-    return render_template("add_folder.html")
+    # existing_user = User.query.filter(User.user_name == user).first()
+
+    new_folder = Folder(user=username, folder_name=folderName)
+    
+    db.session.add(new_folder)
+    db.session.commit()
+    folder_id = new_folder.folder_id
+
+    folder = new_folder
+
+
+    return redirect("/results")
 
 
 
@@ -232,7 +277,7 @@ def modalLoggedIn():
     else:
         print "Try again"
 
-    return render_template("base.html")
+    return redirect("/results")
 
 
 
