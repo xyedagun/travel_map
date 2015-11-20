@@ -240,9 +240,9 @@ def submit():
     else:
     	session['logged_in_user'] = existing_user.user_name
         session['firstname'] = existing_user.fname
-
-    folders = Folder.query.filter_by(user_id=user_id).all()
-    return render_template("base.html", folders=folders)
+        folder = Folder.query.filter_by(user_id = session['user_id'], folder_name = folderName).first()
+    
+    return render_template("base.html",folders=folders)
     
 
 @app.route('/logged-in', methods=["POST"])

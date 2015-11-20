@@ -2,10 +2,13 @@
 $(document).on('ready', function() {
 	$('.yelpImage').on('click', function(evt){ //when you click on .yelpImage class, this function runs
 		var thingTheyClickedOn = evt.currentTarget;
+		var latitude = $(thingTheyClickedOn).data('lat');
+		var longitude = $(thingTheyClickedOn).data('long');
 		console.log(thingTheyClickedOn)		//thingTheyClickedOn is the area where user can click within the yelpImage class
 		var placeId = thingTheyClickedOn.id;
 		console.log(placeId) // var placeId getting the ID of the place(rendered by jinja)
 		var modalToShowId = 'modal' + placeId;//this variable is naming the modal adding the string "modal" and the id from YELP
+		createMap(latitude, longitude, modalToShowId);
 		$('#'+ modalToShowId).modal(); //jquery: the id(#) plus the modalToShow, make a modal
 		console.log('yo');
 
@@ -14,6 +17,11 @@ $(document).on('ready', function() {
 		});
 	});
 });
+
+function createMap(latitude, longitude, modalToShowId){
+	var mapLocation = $("#" + modalToShowId).find(".modal-map");
+	$(mapLocation).html('YO IM A MAP DUDE');
+}
 
 
 function addPlaceToFolder(folderElement, placeId) {
@@ -24,29 +32,20 @@ function addPlaceToFolder(folderElement, placeId) {
 	// debugger;
 
 	$.post('/add-to-folder', data, function(response) {
-
-
-
 		button.text("Remove");
 		var wasAdded = response['added'];
-		alert("Done!")
-		// if (wasAdded) {
-		// 	// change to remove
-		// } else {
-		// 	// change to "Save to Folder"
-		// }
 		console.log("Got from the server: " + response);
 	});
 };
 
 
-$(document).ready(function(){
+$(document).on('ready', function(){
     //Handles menu drop down
     $('.folderform').submit(function(e) {
     	e.preventDefault();
-    	FolderName = $('.add-folder-value').val();
-       $.post('/new_folder', { 'FolderName' :  FolderName}, function(){
-       	$("#add-folder-dropdown").hide();
+    	var FolderName = $(e.currentTarget).find("input").val();
+       	$.post('/new_folder', { 'FolderName' :  FolderName}, function(){
+       	$(".add-folder-dropdown").hide();
        	$(".save-to-folder").append("<li class='save-to-folder-button'><a href='#'>"+FolderName+"</a></li>");
        	$(".list-of-folders").append("<li class='folders'><a href='#'>"+FolderName+"</a></li>");
        });

@@ -77,8 +77,7 @@ input.span3 {
     width: 560px;
     text-indent: left;
     background-color: #777;
-    height: 250px;
-    /*opacity: .8;*/
+    height: 280px;
     text-indent: 10px;
     padding-right: 10px;
     position: relative;
@@ -131,7 +130,7 @@ h4 {
 
 }
 .createFolder {
-  width: 200px;
+  width: auto;
   display: inline-block;
   margin-left: 10px;
 }
@@ -209,6 +208,11 @@ form.navbar-form.navbar-right{
 /*--------------------------------*/
 /*Modal*/
 /*--------------------------------*/
+
+.modal-body{
+  height: 600px;
+}
+
 .modal-body .form-horizontal .col-sm-2,
 .modal-body .form-horizontal .col-sm-10 {
     width: 100%
@@ -274,6 +278,46 @@ img.modal-body {
 #Signup-button{
   margin-left: 5px;
 }
+
+button, input, select, textarea{
+  color: #aaa;
+}
+
+.btn.add-folder {
+  color: white;
+}
+.btn.dropdown-toggle{
+  color: white;
+}
+
+
+.dropdown-menu.add-folder-dropdown{
+  height: 110px;
+}
+
+.btn.add-folder{
+  margin-top: 20px;
+}
+
+.btn.add-folder:hover {
+  background-color: #f5bd35;
+  color: white;
+}
+
+.add-folder-value{
+  height: 32px;
+}
+
+
+.placeCategory-modal {
+  color: #bbb;
+}
+
+
+.modal-map{
+  height: 100px;
+}
+
 /*--------------------------------*/
 /*Header Folder list*/
 /*--------------------------------*/

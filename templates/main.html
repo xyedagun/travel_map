@@ -19,11 +19,12 @@
 </div>
 {% for place in attraction_results %}
 
-<div class="yelpImage list_container" id="{{ place['id'] }}">
+<div class="yelpImage list_container" id="{{ place['id'] }}" data-lat="{{ place['location']['coordinate']['latitude'] }}" data-long="{{ place['location']['coordinate']['longitude'] }}">
 	{% if place['name'] %}
 	<h4>{{place['name']}}</h4>
 	{% endif %}
-	<p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
+	<p class="placeCategory"><b>{{ place['categories'][0][0] }}</b></p><br>
+  <p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
 	{% if place.get('image_url') %}
 	<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
 	{% else %}
@@ -37,8 +38,7 @@
 	{% endif %}
 	<p>{{ place['location']['city'] }}</p>
 
-<!-- {{ place['location']['coordinate']['latitude']}}
-{{ place['location']['coordinate']['longitude']}}  -->
+
 
 </div>
 
@@ -53,6 +53,7 @@
 			{% if place['name'] %}
 			<h4 id="{{ place['id'] }}-name">{{place['name']}}</h4>
 			{% endif %}
+      <p class="placeCategory-modal">{{ place['categories'][0][0] }}</p><br>
 			<p class="placeModalPhone">{{ place.get('display_phone') }}</p>
 			{% if place.get('image_url') %}
 			<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
@@ -64,11 +65,21 @@
 			<p class="modal-text">{{ place['location']['address'][0] }}</p><br>
 			{% endif %}
 			<p class="modal-text">{{ place['location']['city'] }}</p>
-			<div>
+
+
+
+
+<!-- MAP in modal-->
+
+			<div id="map" class="modal-map">
 
 					MAP
 
 			</div>			
+
+
+
+
 
 
 
@@ -87,15 +98,15 @@
 
 
       <div class="createFolder">
-      <ul>
-          <li class="dropdown" id="menuLogin">
-            <button class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
+        <ul class="adding-folder-dropdown">
+          <li class="dropdown">
+            <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
 
 
-            <div id="add-folder-dropdown"class="dropdown-menu" style="padding:17px;">
+            <div class="dropdown-menu add-folder-dropdown" style="padding: 15px; padding-bottom: 0px;">
               <form class="folderform"> 
                 <input name="FolderName" class="add-folder-value" type="text" placeholder="Type folder name"> 
-                <input type="submit" id="create-button" class="btn" value="Create">
+                <input type="submit" id="create-button" class="btn add-folder" value="Create">
               </form>
             </div>
           </li>
@@ -111,7 +122,8 @@
 			<button class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign up
 			</button>
 			{% endif %}
-			<!-- add save button to be saved in database -->
+
+
 				<div class="modal-footer">
                 <button id="closeButton" type="button" class="btn btn-default"
                         data-dismiss="modal">
@@ -136,11 +148,12 @@
 </div>
 {% for hotel in hotel_results %}
 
-<div class="yelpImage list_container" id="{{ hotel['id'] }}">
+<div class="yelpImage list_container" id="{{ hotel['id'] }}" data-lat="{{ hotel['location']['coordinate']['latitude'] }}" data-long="{{ hotel['location']['coordinate']['longitude'] }}">
   {% if hotel['name'] %}
   <h4>{{hotel['name']}}</h4>
   {% endif %}
-  <p class="placePhone">{{ hotel.get('display_phone') }}</p>
+  <p class="placeCategory"><b>{{ hotel['categories'][0][0] }}</b></p><br>
+  <p class="placePhone"><b>{{ hotel.get('display_phone') }}</b></p>
   {% if hotel.get('image_url') %}
   <div class="image-container"><img src="{{ hotel['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -154,8 +167,7 @@
   {% endif %}
   <p>{{ hotel['location']['city'] }}</p>
 
-<!-- {{ hotel['location']['coordinate']['latitude']}}
-{{ hotel['location']['coordinate']['longitude']}}  -->
+
 
 </div>
 
@@ -170,6 +182,7 @@
       {% if hotel['name'] %}
       <h4 id="{{ hotel['id'] }}-name">{{hotel['name']}}</h4>
       {% endif %}
+      <p class="placeCategory-modal">{{ hotel['categories'][0][0] }}</p><br>
       <p class="placeModalPhone">{{ hotel.get('display_phone') }}</p>
       {% if hotel.get('image_url') %}
       <div class="image-container"><img src="{{ hotel['image_url'] }}" alt="snippet_image"></div>
@@ -206,15 +219,15 @@
 
 
       <div class="createFolder">
-      <ul>
-          <li class="dropdown" id="menuLogin">
-            <button class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
+        <ul class="adding-folder-dropdown">
+          <li class="dropdown">
+            <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
 
 
-            <div id="add-folder-dropdown"class="dropdown-menu" style="padding:17px;">
+            <div class="dropdown-menu add-folder-dropdown" style="padding: 15px; padding-bottom: 0px;">
               <form class="folderform"> 
                 <input name="FolderName" class="add-folder-value" type="text" placeholder="Type folder name"> 
-                <input type="submit" id="create-button" class="btn" value="Create">
+                <input type="submit" id="create-button" class="btn add-folder" value="Create">
               </form>
             </div>
           </li>
@@ -255,11 +268,12 @@
 </div>
 {% for restaurant in restaurant_results %}
 
-<div class="yelpImage list_container" id="{{ restaurant['id'] }}">
+<div class="yelpImage list_container" id="{{ restaurant['id'] }}" data-lat="{{ restaurant['location']['coordinate']['latitude'] }}" data-long="{{ restaurant['location']['coordinate']['longitude'] }}">
   {% if restaurant['name'] %}
   <h4>{{restaurant['name']}}</h4>
   {% endif %}
-  <p class="placePhone">{{ restaurant.get('display_phone') }}</p>
+  <p class="placeCategory"><b>{{ restaurant['categories'][0][0] }}</b></p><br>
+  <p class="placePhone"><b>{{ restaurant.get('display_phone') }}</b></p>
   {% if restaurant.get('image_url') %}
   <div class="image-container"><img src="{{ restaurant['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -289,6 +303,7 @@
       {% if restaurant['name'] %}
       <h4 id="{{ restaurant['id'] }}-name">{{restaurant['name']}}</h4>
       {% endif %}
+      <p class="placeCategory-modal">{{ restaurant['categories'][0][0] }}</p><br>
       <p class="placeModalPhone">{{ restaurant.get('display_phone') }}</p>
       {% if restaurant.get('image_url') %}
       <div class="image-container"><img src="{{ restaurant['image_url'] }}" alt="snippet_image"></div>
@@ -321,15 +336,15 @@
 
 
       <div class="createFolder">
-      <ul>
-          <li class="dropdown" id="menuLogin">
-            <button class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
+        <ul class="adding-folder-dropdown">
+          <li class="dropdown">
+            <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
 
 
-            <div id="add-folder-dropdown"class="dropdown-menu" style="padding:17px;">
+            <div class="dropdown-menu add-folder-dropdown" style="padding: 15px; padding-bottom: 0px;">
               <form class="folderform"> 
                 <input name="FolderName" class="add-folder-value" type="text" placeholder="Type folder name"> 
-                <input type="submit" id="create-button" class="btn" value="Create">
+                <input type="submit" id="create-button" class="btn add-folder" value="Create">
               </form>
             </div>
           </li>
@@ -367,11 +382,12 @@
 </div>
 {% for museum in museum_results %}
 
-<div class="yelpImage list_container" id="{{ museum['id'] }}">
+<div class="yelpImage list_container" id="{{ museum['id'] }}" data-lat="{{ museum['location']['coordinate']['latitude'] }}" data-long="{{ museum['location']['coordinate']['longitude'] }}">
   {% if museum['name'] %}
   <h4>{{museum['name']}}</h4>
   {% endif %}
-  <p class="placePhone">{{ museum.get('display_phone') }}</p>
+  <p class="placeCategory"><b>{{ museum['categories'][0][0] }}</b></p><br>
+  <p class="placePhone"><b>{{ museum.get('display_phone') }}</b></p>
   {% if museum.get('image_url') %}
   <div class="image-container"><img src="{{ museum['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -385,8 +401,7 @@
   {% endif %}
   <p>{{ museum['location']['city'] }}</p>
 
-<!-- {{ museum['location']['coordinate']['latitude']}}
-{{ museum['location']['coordinate']['longitude']}}  -->
+
 
 </div>
 
@@ -401,6 +416,7 @@
       {% if museum['name'] %}
       <h4 id="{{ museum['id'] }}-name">{{museum['name']}}</h4>
       {% endif %}
+      <p class="placeCategory-modal">{{ museum['categories'][0][0] }}</p><br>
       <p class="placeModalPhone">{{ museum.get('display_phone') }}</p>
       {% if museum.get('image_url') %}
       <div class="image-container"><img src="{{ museum['image_url'] }}" alt="snippet_image"></div>
@@ -433,15 +449,15 @@
 
 
       <div class="createFolder">
-      <ul>
-          <li class="dropdown" id="menuLogin">
-            <button class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
+        <ul class="adding-folder-dropdown">
+          <li class="dropdown">
+            <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
 
 
-            <div id="add-folder-dropdown"class="dropdown-menu" style="padding:17px;">
+            <div class="dropdown-menu add-folder-dropdown" style="padding: 15px; padding-bottom: 0px;">
               <form class="folderform"> 
                 <input name="FolderName" class="add-folder-value" type="text" placeholder="Type folder name"> 
-                <input type="submit" id="create-button" class="btn" value="Create">
+                <input type="submit" id="create-button" class="btn add-folder" value="Create">
               </form>
             </div>
           </li>
@@ -479,11 +495,12 @@
 </div>
 {% for festival in festival_results %}
 
-<div class="yelpImage list_container" id="{{ festival['id'] }}">
+<div class="yelpImage list_container" id="{{ festival['id'] }}" data-lat="{{ festival['location']['coordinate']['latitude'] }}" data-long="{{ festival['location']['coordinate']['longitude'] }}">
   {% if festival['name'] %}
   <h4>{{festival['name']}}</h4>
   {% endif %}
-  <p class="placePhone">{{ festival.get('display_phone') }}</p>
+  <p class="placeCategory"><b>{{ festival['categories'][0][0] }}</b></p><br>
+  <p class="placePhone"><b>{{ festival.get('display_phone') }}</b></p>
   {% if festival.get('image_url') %}
   <div class="image-container"><img src="{{ festival['image_url'] }}" alt="snippet_image"></div>
   {% else %}
@@ -497,8 +514,7 @@
   {% endif %}
   <p>{{ festival['location']['city'] }}</p>
 
-<!-- {{ festival['location']['coordinate']['latitude']}}
-{{ festival['location']['coordinate']['longitude']}}  -->
+
 
 </div>
 
@@ -511,8 +527,9 @@
         <div class="modal-content">
       <div class="modal-body">
       {% if festival['name'] %}
-      <h4 id="{{ festival['id'] }}-name">{{festival['name']}}</h4>
+      <h4 id="{{ festival['id'] }}-name">{{ festival['name']}}</h4>
       {% endif %}
+       <p class="placeCategory-modal">{{ festival['categories'][0][0] }}</p><br>
       <p class="placeModalPhone">{{ festival.get('display_phone') }}</p>
       {% if festival.get('image_url') %}
       <div class="image-container"><img src="{{ festival['image_url'] }}" alt="snippet_image"></div>
@@ -545,15 +562,15 @@
 
 
       <div class="createFolder">
-      <ul>
-          <li class="dropdown" id="menuLogin">
-            <button class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
+        <ul class="adding-folder-dropdown">
+          <li class="dropdown">
+            <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add a Folder</button>
 
 
-            <div id="add-folder-dropdown"class="dropdown-menu" style="padding:17px;">
+            <div class="dropdown-menu add-folder-dropdown" style="padding: 15px; padding-bottom: 0px;">
               <form class="folderform"> 
                 <input name="FolderName" class="add-folder-value" type="text" placeholder="Type folder name"> 
-                <input type="submit" id="create-button" class="btn" value="Create">
+                <input type="submit" id="create-button" class="btn add-folder" value="Create">
               </form>
             </div>
           </li>
