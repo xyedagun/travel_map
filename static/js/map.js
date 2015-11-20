@@ -40,6 +40,19 @@ function addPlaceToFolder(folderElement, placeId) {
 };
 
 
+$(document).ready(function(){
+    //Handles menu drop down
+    $('.folderform').submit(function(e) {
+    	e.preventDefault();
+    	FolderName = $('.add-folder-value').val();
+       $.post('/new_folder', { 'FolderName' :  FolderName}, function(){
+       	$("#add-folder-dropdown").hide();
+       	$(".save-to-folder").append("<li class='save-to-folder-button'><a href='#'>"+FolderName+"</a></li>");
+       	$(".list-of-folders").append("<li class='folders'><a href='#'>"+FolderName+"</a></li>");
+       });
+    });
+});
+
 
 
 

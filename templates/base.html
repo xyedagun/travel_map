@@ -44,7 +44,7 @@
                 
                   <div class="dropdown">
                   <button type="button" id ="folderList" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" ><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Folders List&nbsp;<span class="caret"></span></button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu list-of-folders">
 
                       {% for folder in folders %}
                       <li class="folders"><a href="#">{{ folder.folder_name }}</a></li>
@@ -52,7 +52,7 @@
                     </ul>
                   </div>
 
-
+                  
 
                 <div class="nav pull-right">
                 <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a></div>

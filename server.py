@@ -194,7 +194,7 @@ def show_folders():
 @app.route('/new_folder', methods=["POST"])
 def create_folder():
 
-    user_id = request.form.get("user_id")
+    user_id = session.get('user_id')
     print user_id
     folderName = request.form.get("FolderName")
     # business_id = request.form.get("business_id")
@@ -202,7 +202,7 @@ def create_folder():
     
     
     new_folder = Folder(user_id=user_id, folder_name=folderName)
-    existing_folder = Folder.query.filter(Folder.folder_name == folderName).first()
+    # existing_folder = Folder.query.filter(Folder.folder_name == folderName).first()
     db.session.add(new_folder)
     db.session.commit()
     folder_id = new_folder.folder_id
@@ -210,7 +210,7 @@ def create_folder():
     folder = new_folder
 
 
-    return redirect("/results")
+    return "success"
 
 
 
