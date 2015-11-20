@@ -19,8 +19,10 @@ app.jinja_env.undefined = StrictUndefined
 def index():
     """Show homepage."""
 
+    user_id = session.get('user_id')
+    folders = Folder.query.filter_by(user_id=user_id).all()
 
-    return render_template("base.html")
+    return render_template("base.html", folders=folders)
 
 
 @app.route('/results', methods=['POST'])
@@ -125,7 +127,6 @@ def add_to_folder():
     db.session.commit()
 
 
-
     return redirect("/results")
 
 
@@ -190,16 +191,18 @@ def show_folders():
 
 
 
-@app.route('/create_folder', methods=["POST"])
+@app.route('/new_folder', methods=["POST"])
 def create_folder():
 
-    user = request.form.get("username")
+    user_id = request.form.get("user_id")
+    print user_id
     folderName = request.form.get("FolderName")
+    # business_id = request.form.get("business_id")
 
-    # existing_user = User.query.filter(User.user_name == user).first()
-
-    new_folder = Folder(user=username, folder_name=folderName)
     
+    
+    new_folder = Folder(user_id=user_id, folder_name=folderName)
+    existing_folder = Folder.query.filter(Folder.folder_name == folderName).first()
     db.session.add(new_folder)
     db.session.commit()
     folder_id = new_folder.folder_id
@@ -238,7 +241,8 @@ def submit():
     	session['logged_in_user'] = existing_user.user_name
         session['firstname'] = existing_user.fname
 
-    return render_template("base.html")
+    folders = Folder.query.filter_by(user_id=user_id).all()
+    return render_template("base.html", folders=folders)
     
 
 @app.route('/logged-in', methods=["POST"])
@@ -258,7 +262,10 @@ def log_in():
     else:
         print "Try again"
 
-    return render_template("base.html")
+    user_id = session.get('user_id')    
+    folders = Folder.query.filter_by(user_id=user_id).all()
+
+    return render_template("base.html", folders=folders)
 
 
 
@@ -308,7 +315,9 @@ def signUp():
         session['firstname'] = existing_user.fname
         session['user_id'] = existing_user.user_id
 
-    return render_template("base.html")
+    folders = Folder.query.filter_by(user_id=user_id).all()
+
+    return render_template("base.html", folders=folders)
 
 
 @app.route('/log-out')

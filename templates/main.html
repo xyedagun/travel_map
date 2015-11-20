@@ -87,7 +87,18 @@
       <div class="createFolder">
       <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
       </div>
-
+      <ul id="createFolder">
+        <li class="dropdown" id="newFolder">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+            <div class="dropdown-menu" style="padding:17px;">
+              <form class="form" id="formLogin"> 
+                <input name="username" id="username" type="text" placeholder="Username"> 
+                <input name="password" id="password" type="password" placeholder="Password"><br>
+                <button type="button" id="btnLogin" class="btn">Login</button>
+              </form>
+            </div>
+          </li>
+      </ul>
 
 			{% else %}
 			<button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
@@ -179,20 +190,23 @@
       {% if 'logged_in_user' in session %}
       <div class="dropdown">
         <button id="{{ hotel['id'] }}-save" data-yelp-id="{{hotel['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
-        <span class="caret"></span></button>
+          <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="/">Create a Folder</a></li>
 
-             {% for folder in folders %}
-            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
-            {% endfor %}
+        {% for folder in folders %}
+        <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+        {% endfor %}
           </ul>
-      </div>
-      <div class="createFolder">
-      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
-      </div>
+            </div>
+              <div class="createFolder">
+              <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+            </div>
 
-      {% else %}
+
+            
+
+
+        {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign up
@@ -280,20 +294,19 @@
       {% if 'logged_in_user' in session %}
       <div class="dropdown">
         <button id="{{ restaurant['id'] }}-save" data-yelp-id="{{restaurant['id']}}"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
-        <span class="caret"></span></button>
+         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="/">Create a Folder</a></li>
 
-             {% for folder in folders %}
-            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
-            {% endfor %}
+        {% for folder in folders %}
+        <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+        {% endfor %}
           </ul>
-      </div>
-      <div class="createFolder">
-      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
-      </div>
+            </div>
+              <div class="createFolder">
+              <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+            </div>
 
-      {% else %}
+        {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign up
@@ -378,20 +391,19 @@
       {% if 'logged_in_user' in session %}
       <div class="dropdown">
         <button id="{{ museum['id'] }}-save" data-yelp-id="{{museum['id']}}"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
-        <span class="caret"></span></button>
+         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="/">Create a Folder</a></li>
 
-             {% for folder in folders %}
-            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
-            {% endfor %}
+        {% for folder in folders %}
+        <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+        {% endfor %}
           </ul>
-      </div>
-      <div class="createFolder">
-      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
-      </div>
+            </div>
+              <div class="createFolder">
+              <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+            </div>
 
-      {% else %}
+        {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign up
@@ -476,21 +488,19 @@
       {% if 'logged_in_user' in session %}
       <div class="dropdown">
         <button id="{{ festival['id'] }}-save" data-yelp-id="{{festival['id']}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Save to Folder
-        <span class="caret"></span></button>
+         <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="/">Create a Folder</a></li>
 
-             {% for folder in folders %}
-            <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
-            {% endfor %}
+        {% for folder in folders %}
+        <li class="save-to-folder-button"><a href="#">{{ folder.folder_name }}</a></li>
+        {% endfor %}
           </ul>
-      </div>
-      <div class="createFolder">
-      <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
-      </div>
-      
+            </div>
+              <div class="createFolder">
+              <button class="btn btn-default btn-md active"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create a Folder</button>
+            </div>
 
-      {% else %}
+        {% else %}
       <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Log in
       </button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign up

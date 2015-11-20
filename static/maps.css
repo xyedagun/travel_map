@@ -53,6 +53,7 @@ p {
 #folderList{
   position: relative;
   display: inline-block;
+  margin-right: 10px;
 }
 }
 
@@ -132,6 +133,11 @@ h4 {
 .createFolder {
   width: 200px;
   display: inline-block;
+  margin-left: 10px;
+}
+
+#Logout-button {
+  margin-right: 20px;
 }
 
 /*--------------------------------*/
@@ -240,6 +246,7 @@ img.modal-body {
   width: auto;
   float: right;   
   margin-top: 8px;
+  margin-right: 20px;
 }
 
 .result_header {
@@ -263,5 +270,17 @@ img.modal-body {
   position: relative;
   display: inline-block;
 }
+
+#Signup-button{
+  margin-left: 5px;
+}
+/*--------------------------------*/
+/*Header Folder list*/
+/*--------------------------------*/
+
+
+
+
+
 
 

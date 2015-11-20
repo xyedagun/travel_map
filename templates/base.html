@@ -25,7 +25,7 @@
 <!--             <div class="form-group">
                 <input type="text" class="form-control" name="query" id="search" placeholder="Looking for?">
             </div> -->
-            
+
             <div class="form-group">
                 <input type="text" class="form-control" name="location" id="search" placeholder="Your destination">
             </div>
@@ -37,15 +37,25 @@
             <button type="button" id ="Signup-button" class="btn btn-primary" data-toggle="modal" data-target="#mySignUpModal">Sign Up</button>
 
             {% else %}
+
              <div id="greeting" >
-            <h4>Welcome&nbsp;</h4><h4>{{ session['firstname']}}</h4>
-            &nbsp;&nbsp;&nbsp;
-            
-            
-            <button type="button" id ="folderList" class="btn btn-default" data-hover="dropdown" data-target="#"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Folders List</button>
-            
-        
-            <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a>
+                <h4>Welcome&nbsp;</h4><h4>{{ session['firstname']}}</h4>
+                &nbsp;&nbsp;&nbsp;
+                
+                  <div class="dropdown">
+                  <button type="button" id ="folderList" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" ><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Folders List&nbsp;<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+
+                      {% for folder in folders %}
+                      <li class="folders"><a href="#">{{ folder.folder_name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+
+
+                <div class="nav pull-right">
+                <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a></div>
 
             </div>
             {% endif %}      
