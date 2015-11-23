@@ -315,9 +315,18 @@ button, input, select, textarea{
 
 
 .modal-map{
-  height: 100px;
+  height: 260px;
 }
 
+.modal-body img{
+    position: relative;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+    top:70%;
+}
 /*--------------------------------*/
 /*Header Folder list*/
 /*--------------------------------*/

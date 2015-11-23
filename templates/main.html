@@ -71,7 +71,7 @@
 
 <!-- MAP in modal-->
 
-			<div id="map" class="modal-map">
+			<div class="modal-map">
 
 					MAP
 
@@ -194,11 +194,15 @@
       <p class="modal-text">{{ hotel['location']['address'][0] }}</p><br>
       {% endif %}
       <p class="modal-text">{{ hotel['location']['city'] }}</p>
-      <div>
+
+
+<!-- MAP in modal-->
+
+      <div class="modal-map">
 
           MAP
 
-      </div>      
+      </div>       
 
 
 
@@ -287,8 +291,7 @@
   {% endif %}
   <p>{{ restaurant['location']['city'] }}</p>
 
-<!-- {{ restaurant['location']['coordinate']['latitude']}}
-{{ restaurant['location']['coordinate']['longitude']}}  -->
+
 
 </div>
 
@@ -315,11 +318,15 @@
       <p class="modal-text">{{ restaurant['location']['address'][0] }}</p><br>
       {% endif %}
       <p class="modal-text">{{ restaurant['location']['city'] }}</p>
-      <div>
+
+
+<!-- MAP in modal-->
+
+      <div class="modal-map">
 
           MAP
 
-      </div> 
+      </div>  
 
         <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
@@ -428,11 +435,15 @@
       <p class="modal-text">{{ museum['location']['address'][0] }}</p><br>
       {% endif %}
       <p class="modal-text">{{ museum['location']['city'] }}</p>
-      <div>
+
+
+<!-- MAP in modal-->
+
+      <div class="modal-map">
 
           MAP
 
-      </div>   
+      </div>  
 
               <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
@@ -541,11 +552,15 @@
       <p class="modal-text">{{ festival['location']['address'][0] }}</p><br>
       {% endif %}
       <p class="modal-text">{{ festival['location']['city'] }}</p>
-      <div>
+
+
+<!-- MAP in modal-->
+
+      <div class="modal-map">
 
           MAP
 
-      </div>      
+      </div>     
 
               <!-- Save to folder button-->
       {% if 'logged_in_user' in session %}
@@ -769,32 +784,7 @@
     
 {% block js %}
 
-<!-- 
-<p>Click the button to get your coordinates.</p>
 
-<button onclick="getLocation()">Try It</button>
-
-<p id="demo"></p>
-
-<script>
-var x = document.getElementById("demo");
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude; 
-}
-</script>
- -->
-
-
-
-<!-- put page-specific JS here on other templates -->
 {% endblock %}
 
 

@@ -19,9 +19,13 @@ $(document).on('ready', function() {
 });
 
 function createMap(latitude, longitude, modalToShowId){
-	var mapLocation = $("#" + modalToShowId).find(".modal-map");
-	$(mapLocation).html('YO IM A MAP DUDE');
-}
+	var mapLocation = $("#" + modalToShowId).find(".modal-map") //the div for map. Different one for each modal2
+	var map = new google.maps.Map(mapLocation[0], {
+    center: new google.maps.LatLng(latitude,longitude),
+    zoom: 8,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+};
 
 
 function addPlaceToFolder(folderElement, placeId) {
