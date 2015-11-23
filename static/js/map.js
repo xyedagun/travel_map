@@ -8,23 +8,56 @@ $(document).on('ready', function() {
 		var placeId = thingTheyClickedOn.id;
 		console.log(placeId) // var placeId getting the ID of the place(rendered by jinja)
 		var modalToShowId = 'modal' + placeId;//this variable is naming the modal adding the string "modal" and the id from YELP
-		createMap(latitude, longitude, modalToShowId);
+		
+		var modalMap = createMap(latitude, longitude, modalToShowId);
+		
 		$('#'+ modalToShowId).modal(); //jquery: the id(#) plus the modalToShow, make a modal
-		console.log('yo');
 
 		$('#' + modalToShowId).find(".save-to-folder-button").on('click', function(e) {
 			addPlaceToFolder(e.currentTarget, placeId);
 		});
+	
+		google.maps.event.trigger(modalMap, 'resize');
+
+
+
 	});
 });
 
 function createMap(latitude, longitude, modalToShowId){
-	var mapLocation = $("#" + modalToShowId).find(".modal-map") //the div for map. Different one for each modal2
-	var map = new google.maps.Map(mapLocation[0], {
-    center: new google.maps.LatLng(latitude,longitude),
-    zoom: 8,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+	var mapLocation = $("#" + modalToShowId).find(".modal-map"); //the div for map. Different one for each modal2
+	var LatLong = {lat: latitude, lng: longitude};
+	var map = new google.maps.Map(mapLocation[0], 
+	    {
+	    	center: LatLong,
+	    	zoom: 14,
+	    	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    }
+	);
+	
+	var marker = new google.maps.Marker({
+		position: LatLong,
+		title: "Hi there!"
 	});
+	console.log(marker);
+
+	marker.setMap(map);
+	google.maps.event.addListenerOnce(map, 'idle', function() {
+    	google.maps.event.trigger(map, 'resize');
+	});
+
+	google.maps.event.addListenerOnce(map, 'idle', function() {
+		map.setCenter(LatLong);
+    	
+	});
+
+
+	return map;
+};
+
+function testMarker(){
+	placeLocation = new google.map.Latlng(latitude, longitude);
+	marker(placeLocation);
 };
 
 
