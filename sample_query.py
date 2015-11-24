@@ -43,7 +43,7 @@ class Category(object):
 def search_attractions(location, term="tourist attraction"):
 	"""Search by city or country and get top tourist attraction list"""	
 
-	search_result = yelp_api.search_query(location=location, term=term, limit=9)
+	search_result = yelp_api.search_query(location=location, term=term, limit=6)
 
 	return search_result['businesses']
 
@@ -53,7 +53,7 @@ def search_attractions(location, term="tourist attraction"):
 def search_hotels(location, term="HOTELS"):
 	"""Search by city or country and get top hotels"""	
 
-	hotels_result = yelp_api.search_query(location=location, term=term, limit=9)
+	hotels_result = yelp_api.search_query(location=location, term=term, limit=6)
 
 	return hotels_result['businesses']
 
@@ -62,7 +62,7 @@ def search_hotels(location, term="HOTELS"):
 def search_restaurants(location, term="RESTAURANT"):
 	"""Search by city or country and get top restaurants"""	
 
-	restaurants_result = yelp_api.search_query(location=location, term=term, limit=9)
+	restaurants_result = yelp_api.search_query(location=location, term=term, limit=6)
 
 	return restaurants_result['businesses']
 
@@ -71,7 +71,7 @@ def search_restaurants(location, term="RESTAURANT"):
 def search_museums(location, term="MUSEUM"):
 	"""Search by city or country and get top museums"""	
 
-	museums_result = yelp_api.search_query(location=location, term=term, limit=9)
+	museums_result = yelp_api.search_query(location=location, term=term, limit=6)
 
 	return museums_result['businesses']
 
@@ -81,7 +81,7 @@ def search_museums(location, term="MUSEUM"):
 def search_festivals(location, term="FESTIVALS"):
 	"""Search by city or country and get top festivals"""	
 
-	festivals_result = yelp_api.search_query(location=location, term=term, limit=9)
+	festivals_result = yelp_api.search_query(location=location, term=term, limit=6)
 
 	return festivals_result['businesses']
 

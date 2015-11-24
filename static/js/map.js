@@ -90,9 +90,12 @@ $(document).on('ready', function(){
 });
 
 $(document).ready(function(){
-	$("#submit-button").click(function(){
-    $("#results-section").slideToggle();
-	});
+    var result = $("#results-section");
+    if (result.length>0){
+    	$('html, body').animate({
+        scrollTop: $("#results-section").offset().top
+    	}, 500);
+    }   
 });
 
 

@@ -14,13 +14,13 @@
 
 <div class="container" id="results-section">
 <!-- Top Attractions -->
-  
+    
     <div class="result_header">
     <h2>Top Attractions</h2>
     </div>
-
+    
     {% for place in attraction_results %}
-    <div class="result-div">
+    <div class="result-div"> 
     <div class="yelpImage" id="{{ place['id'] }}" data-lat="{{ place['location']['coordinate']['latitude'] }}" data-long="{{ place['location']['coordinate']['longitude'] }}">
     	{% if place['name'] %}
     	<h4>{{place['name']}}</h4>
@@ -34,15 +34,14 @@
     	{% endif %}
     	<a href="{{ place.get('url')}}" > Click to view on Yelp</a>
     	<br><br>
-    	<p>{{ place.get('snippet_text') }}</p><br><br>
+    	<p class="place-snippet" >{{ place.get('snippet_text') }}</p><br><br>
     	{% if place['location']['address'] %}
     	<p>{{ place['location']['address'][0] }}</p><br>
     	{% endif %}
     	<p>{{ place['location']['city'] }}</p>
 
     </div>   
-  </div>
-
+</div>
 
 
 
@@ -165,7 +164,7 @@
   {% endif %}
   <a href="{{ hotel.get('url')}}" > Click to view on Yelp</a>
   <br><br>
-  <p>{{ hotel.get('snippet_text') }}</p><br><br>
+  <p class="place-snippet">{{ hotel.get('snippet_text') }}</p><br><br>
   {% if hotel['location']['address'] %}
   <p>{{ hotel['location']['address'][0] }}</p><br>
   {% endif %}
@@ -290,7 +289,7 @@
   {% endif %}
   <a href="{{ restaurant.get('url')}}" > Click to view on Yelp</a>
   <br><br>
-  <p>{{ restaurant.get('snippet_text') }}</p><br><br>
+  <p class="place-snippet">{{ restaurant.get('snippet_text') }}</p><br><br>
   {% if restaurant['location']['address'] %}
   <p>{{ restaurant['location']['address'][0] }}</p><br>
   {% endif %}
@@ -408,7 +407,7 @@
   {% endif %}
   <a href="{{ museum.get('url')}}" > Click to view on Yelp</a>
   <br><br>
-  <p>{{ museum.get('snippet_text') }}</p><br><br>
+  <p class="place-snippet">{{ museum.get('snippet_text') }}</p><br><br>
   {% if museum['location']['address'] %}
   <p>{{ museum['location']['address'][0] }}</p><br>
   {% endif %}
@@ -527,7 +526,7 @@
   {% endif %}
   <a href="{{ festival.get('url')}}" > Click to view on Yelp</a>
   <br><br>
-  <p>{{ festival.get('snippet_text') }}</p><br><br>
+  <p class="place-snippet">{{ festival.get('snippet_text') }}</p><br><br>
   {% if festival['location']['address'] %}
   <p>{{ festival['location']['address'][0] }}</p><br>
   {% endif %}

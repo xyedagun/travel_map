@@ -87,8 +87,9 @@ p {
     height: 40px;
     background: #f5bd35;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.3em;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 input.span3 {
@@ -102,7 +103,7 @@ input.span3 {
 }
 
 .result-div {
-    padding-left: 20px;
+    padding-left: 22px;
     padding-top: 8px;
     width: 413px;
     text-indent: left;
@@ -112,31 +113,27 @@ input.span3 {
     text-indent: 10px;
     padding-right: 10px;
     position: relative;
+    margin-bottom: 20px;
 
 
 }
 
 .result-div p {
-    font-size: 1em;
+    font-size: .9em;
     text-indent: left;
     text-align: left;
     margin-right: 20px;
+    line-height: auto;
+
 
 
 }
-
-/*#img-container {
-    position: relative; 
-    width: 110px;
-    height: 110px;
-    overflow: hidden;
-}*/
 
 
 .result-div img{
     position: relative;
     float: right;
-    margin-left: auto;
+    margin-left: 8px;
     margin-right: auto;
     margin-right: 10px;
     border-radius: 5px;
@@ -175,9 +172,10 @@ h4 {
 .result-div{
   /*position: relative;*/
   display: inline-block;
-  padding-left: 10px;
+  padding-left: 22px;
   margin-left: 30px;
-  height: 300px;
+  height: 290px;
+  border-radius: .5em;
 }
 /*--------------------------------*/
 /*Search button*/
@@ -250,7 +248,8 @@ form.navbar-form.navbar-right{
 }
 
 #search{
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-style: italic;
   
 }
 /*--------------------------------*/
@@ -258,7 +257,7 @@ form.navbar-form.navbar-right{
 /*--------------------------------*/
 
 .modal-body{
-  height: 600px;
+  height: 615px;
 }
 
 .modal-body .form-horizontal .col-sm-2,
@@ -310,11 +309,10 @@ img.modal-body {
   text-align: center;
   /*position: relative;*/
   background-color: black;
-  opacity: .6;
 }
 
 .result_header h2{
-  color: white;
+  color: #f5bd35;
   font-family: Helvetica;
   font-size: 3em;
   font-weight: bold;
@@ -368,6 +366,9 @@ button, input, select, textarea{
 .modal-map{
   height: 260px;
   width: 568px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  margin: 22px 0 10px 0;
 }
 
 .modal-body img{
@@ -390,6 +391,7 @@ button, input, select, textarea{
   background-color: black;
   width: 100%;
   height: 100%;
+  margin-left: 20px;
 
 }
 
@@ -397,6 +399,15 @@ button, input, select, textarea{
   height: 100%;
 }
 
+.place-snippet{
+  line-height: .8em;
+  font-style: italic;
+  
+}
 
-
-
+.yelpImage h4{
+  font-size: 1.4em;
+}
+.adding-folder-dropdown{
+  padding-left: 10px;
+}
