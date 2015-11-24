@@ -89,7 +89,11 @@ $(document).on('ready', function(){
     });
 });
 
-
+$(document).ready(function(){
+	$("#submit-button").click(function(){
+    $("#results-section").slideToggle();
+	});
+});
 
 
 

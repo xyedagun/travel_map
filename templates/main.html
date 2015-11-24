@@ -12,35 +12,38 @@
 
 {% block body %}
 
-
+<div class="container" id="results-section">
 <!-- Top Attractions -->
-<div class="result_header">
-<h2>Top Attractions</h2>
-</div>
-{% for place in attraction_results %}
+  
+    <div class="result_header">
+    <h2>Top Attractions</h2>
+    </div>
 
-<div class="yelpImage list_container" id="{{ place['id'] }}" data-lat="{{ place['location']['coordinate']['latitude'] }}" data-long="{{ place['location']['coordinate']['longitude'] }}">
-	{% if place['name'] %}
-	<h4>{{place['name']}}</h4>
-	{% endif %}
-	<p class="placeCategory"><b>{{ place['categories'][0][0] }}</b></p><br>
-  <p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
-	{% if place.get('image_url') %}
-	<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
-	{% else %}
-	<div class="image-container"><img src="static/img/placeholder.png" alt="image placeholder" style="width:100px;height:100px;"></div>
-	{% endif %}
-	<a href="{{ place.get('url')}}" > Click to view on Yelp</a>
-	<br><br>
-	<p>{{ place.get('snippet_text') }}</p><br><br>
-	{% if place['location']['address'] %}
-	<p>{{ place['location']['address'][0] }}</p><br>
-	{% endif %}
-	<p>{{ place['location']['city'] }}</p>
+    {% for place in attraction_results %}
+    <div class="result-div">
+    <div class="yelpImage" id="{{ place['id'] }}" data-lat="{{ place['location']['coordinate']['latitude'] }}" data-long="{{ place['location']['coordinate']['longitude'] }}">
+    	{% if place['name'] %}
+    	<h4>{{place['name']}}</h4>
+    	{% endif %}
+    	<p class="placeCategory"><b>{{ place['categories'][0][0] }}</b></p><br>
+      <p class="placePhone"><b>{{ place.get('display_phone') }}</b></p>
+    	{% if place.get('image_url') %}
+    	<div class="image-container"><img src="{{ place['image_url'] }}" alt="snippet_image"></div>
+    	{% else %}
+    	<div class="image-container"><img src="static/img/placeholder.png" alt="image placeholder" style="width:100px;height:100px;"></div>
+    	{% endif %}
+    	<a href="{{ place.get('url')}}" > Click to view on Yelp</a>
+    	<br><br>
+    	<p>{{ place.get('snippet_text') }}</p><br><br>
+    	{% if place['location']['address'] %}
+    	<p>{{ place['location']['address'][0] }}</p><br>
+    	{% endif %}
+    	<p>{{ place['location']['city'] }}</p>
+
+    </div>   
+  </div>
 
 
-
-</div>
 
 
 <!-- Modal for top attractions-->
@@ -148,7 +151,8 @@
 </div>
 {% for hotel in hotel_results %}
 
-<div class="yelpImage list_container" id="{{ hotel['id'] }}" data-lat="{{ hotel['location']['coordinate']['latitude'] }}" data-long="{{ hotel['location']['coordinate']['longitude'] }}">
+<div class="result-div">
+<div class="yelpImage" id="{{ hotel['id'] }}" data-lat="{{ hotel['location']['coordinate']['latitude'] }}" data-long="{{ hotel['location']['coordinate']['longitude'] }}">
   {% if hotel['name'] %}
   <h4>{{hotel['name']}}</h4>
   {% endif %}
@@ -170,7 +174,7 @@
 
 
 </div>
-
+</div>
 
 <!-- Modal for top hotels-->
 
@@ -272,6 +276,7 @@
 </div>
 {% for restaurant in restaurant_results %}
 
+<div class="result-div">
 <div class="yelpImage list_container" id="{{ restaurant['id'] }}" data-lat="{{ restaurant['location']['coordinate']['latitude'] }}" data-long="{{ restaurant['location']['coordinate']['longitude'] }}">
   {% if restaurant['name'] %}
   <h4>{{restaurant['name']}}</h4>
@@ -292,7 +297,7 @@
   <p>{{ restaurant['location']['city'] }}</p>
 
 
-
+</div>
 </div>
 
 
@@ -389,6 +394,7 @@
 </div>
 {% for museum in museum_results %}
 
+<div class="result-div">
 <div class="yelpImage list_container" id="{{ museum['id'] }}" data-lat="{{ museum['location']['coordinate']['latitude'] }}" data-long="{{ museum['location']['coordinate']['longitude'] }}">
   {% if museum['name'] %}
   <h4>{{museum['name']}}</h4>
@@ -410,6 +416,7 @@
 
 
 
+</div>
 </div>
 
 
@@ -506,7 +513,8 @@
 </div>
 {% for festival in festival_results %}
 
-<div class="yelpImage list_container" id="{{ festival['id'] }}" data-lat="{{ festival['location']['coordinate']['latitude'] }}" data-long="{{ festival['location']['coordinate']['longitude'] }}">
+<div class="result-div">
+<div class="yelpImage" id="{{ festival['id'] }}" data-lat="{{ festival['location']['coordinate']['latitude'] }}" data-long="{{ festival['location']['coordinate']['longitude'] }}">
   {% if festival['name'] %}
   <h4>{{festival['name']}}</h4>
   {% endif %}
@@ -526,7 +534,7 @@
   <p>{{ festival['location']['city'] }}</p>
 
 
-
+</div>
 </div>
 
 

@@ -17,28 +17,35 @@
 
 </head>
 <body>
-<div id="header">
-	<div id="search-nav" class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-	    <center>
-        <form action="/results" class="navbar-form navbar-right" method="POST">
-<!--             <div class="form-group">
-                <input type="text" class="form-control" name="query" id="search" placeholder="Looking for?">
-            </div> -->
 
-            <div class="form-group">
-                <input type="text" class="form-control" name="location" id="search" placeholder="Your destination">
-            </div>
-            <button id ="submit-button" type="submit" value="search"class="btn btn-default">Search</button>
-            </form>
-            <div id="login-welcome">
+<!-- TOP OF PAGE--> 
+<div id="page-top" class="index">
+
+  <!-- NAVIGATION -->
+	<div  class="navbar navbar-default navbar-fixed-top navbar-shrink" role="navigation">
+
+	<div class="container topnav">
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#">
+          </button>
+          <a class="navbar-brand topnav" href="#">Smart Travel</a>
+          <a class="navbar-brand topnav" href="#body-container"><span class="glyphicon glyphicon-search"></span></a>
+        </div>
+      <div id="collapse navbar-collapse" class="bs-example-navbar-collapse-1">
+
+            
+            <!-- Log in and Sign up buttons-->
             {% if "firstname" not in session %}
-            <button type="button" id ="login-button" class="btn btn-primary" data-toggle="modal" data-target="#myLoginModal">Log In</button>
-            <button type="button" id ="Signup-button" class="btn btn-primary" data-toggle="modal" data-target="#mySignUpModal">Sign Up</button>
+            <ul class="nav navbar-nav navbar-right">
+
+            <li><button type="button" id ="login-button" class="btn btn-primary" data-toggle="modal" data-target="#myLoginModal">Log In</button></li>
+            <li><button type="button" id ="Signup-button" class="btn btn-primary" data-toggle="modal" data-target="#mySignUpModal">Sign Up</button></li>
+            </ul>
 
             {% else %}
-
-             <div id="greeting" >
+          <div id="greeting" >
+            <ul class="nav navbar-nav navbar-right">
+          
                 <h4>Welcome&nbsp;</h4><h4>{{ session['firstname']}}</h4>
                 &nbsp;&nbsp;&nbsp;
                 
@@ -48,26 +55,42 @@
 
                       {% for folder in folders %}
                       <li class="folders"><a href="#">{{ folder.folder_name }}</a></li>
+
                       {% endfor %}
                     </ul>
                   </div>
-
-                  
+                
 
                 <div class="nav pull-right">
-                <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a></div>
+                  <a href="/log-out"><button type="button" name="logout" id ="Logout-button" class="btn btn-primary" >Log out</button></a>
+                </div>
+                </ul>
+          </div>
+            {% endif %} 
 
-            </div>
-            {% endif %}      
-	         </div>
-	    </center>
-	    </div>
-	</div>
-	</div>
-</div>	
+        </div>
+    </div>          
+  </div>
 
-
-
+</div>
+<!-- BODY-->
+  <div id="body-container"> 
+            <div id="search-row" class="row"> 
+              <div id="searchBox-div">
+              <div class="col-md-6 col-md-offset-3">
+        	    
+                <form action="/results" class="search-box" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="location" id="search" placeholder="Your destination">
+                    </div>
+                    <center>
+                    <button id ="submit-button" type="submit" value="search"class="btn btn-default" href="#results-div-container">Search</button></center>
+                    </form>
+                  </div>
+                  </div>
+            </div>       
+  </div> 
+    
 {% block body %}
 
 {% endblock %}
@@ -239,17 +262,11 @@
 </div>
 
 
-{% if session.get('logged_in_user') %}
-<p>Logged in</p>
-{% else %}
-<p>Not logged in</p>
 
 <!-- Log in button should be changed to user name upon logged in. And Sign up page should be changed to log out button
  -->
 
 
-
-{% endif %}
 
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -258,5 +275,7 @@
 {% block js %}
 <!-- put page-specific JS here on other templates -->
 {% endblock %}
+
+
 </body>
 </html>

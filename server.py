@@ -25,6 +25,8 @@ def index():
     return render_template("base.html", folders=folders)
 
 
+
+
 @app.route('/results', methods=['POST'])
 def get_result():
     location = request.form.get("location")
